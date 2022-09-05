@@ -542,7 +542,7 @@
             <td class="s8">
               <input type="text" id="contact_no" required class="form-control form-control-md" name="contact_no" />
             </td>
-            <td class="s6"><input type="text" id="customer_name" required name="customer_name"
+            <td class="s6"><input type="text" id="customer_name" readonly required name="customer_name"
                 class="form-control form-control-md" />
             </td>
             <td class="s7"></td>
@@ -555,16 +555,16 @@
             </td>
             <td class="s8">
 
-              <input type="number" id="performaAmount" required name="performaAmount"
+              <input type="number" id="performaAmount" readonly required name="performaAmount"
                 class="form-control form-control-md" />
             </td>
-            <td class="s8"><input type="number" id="totalAmount" required name="totalAmount"
+            <td class="s8"><input type="number" readonly id="totalAmount" required name="totalAmount"
                 class="form-control form-control-md" />
             </td>
-            <td class="s8"><input type="number" id="balanceAmount" required name="balanceAmount"
+            <td class="s8"><input type="number" readonly id="balanceAmount" required name="balanceAmount"
                 class="form-control form-control-md" />
             </td>
-            <td class="s9"><input type="text" id="date" required name="date" class="form-control form-control-md" />
+            <td class="s9"><input type="text" id="date" readonly required name="date" class="form-control form-control-md" />
             </td>
             <td class="s8" dir="ltr"><input type="number" id="amountDeposit" required name="amountDeposit"
                 class="form-control form-control-md" />
@@ -590,13 +590,13 @@
           </tr>
         </tbody>
       </table>
-      <div style="float: right; margin-right:15px; margin-top:1.2rem">
+      <div style="float: right; margin-right:1rem; margin-top:1.2rem">
         <button type="submit" class="btn btn-success btn-md" data-mdb-ripple-color="dark">Submit</button>
       </div>
 
     </form>
     <div id="dataTable" class="waffle no-grid" style="display: inline-block;
-  vertical-align: text-top; margin-left:2rem">
+  vertical-align: text-top; margin-left:1rem">
       <table class="waffle no-grid" cellspacing="0" cellpadding="0" style="margin-top: 5rem;">
         <tbody>
           <tr style="height: 20px;">
@@ -615,7 +615,7 @@
     </div>
 
     <div id="dataTable2" class="waffle no-grid" style="display: inline-block;
-  vertical-align: text-top; margin-left:16rem">
+  vertical-align: text-top; margin-left:10rem">
       <table class="waffle no-grid" cellspacing="0" cellpadding="0" style="margin-top: 5rem;">
         <tbody>
           <tr style="height: 20px;">
@@ -635,7 +635,7 @@
     <div id='embed_1194244850' class='waffle-embedded-object-overlay'
       style='width: 144px; height: 38px; display: block;'>
 
-      <div style="float: right; margin-right:-65rem; margin-top:1.2rem">
+      <div style="float: right; margin-right:-55rem; margin-top:1.2rem">
         <select name="status" id="status" class="form-control" style=" margin-top:1.2rem">
           <option value="Refund">Refund</option>
           <option value="Carry_Fwd">Carry_Fwd</option>
@@ -648,7 +648,7 @@
 
       </div>
       <button type="button" onclick="handleSubmitForm()" class="btn btn-success btn-md" data-mdb-ripple-color="dark"
-        style="float: right; margin-right:-72rem; margin-top:6rem">Submit</button>
+        style="float: right; margin-right:-61.6rem; margin-top:6rem">Submit</button>
 
       <!-- The Modal -->
       <div class="modal" id="myModal">
@@ -932,18 +932,24 @@
   function searchComplete(allData) {
     $(".loading").hide();
     var data = [];
-    // console.log("allData", allData;
+    console.log("allData", allData);
 
     console.log("#performa", String($("#performa").val()))
     allData.map((mappedData) => {
       // console.log("mappedData", String(mappedData[1]))
+      if (allData[allData.length - 1].length >= 9 && allData[allData.length - 1].length <= 12) {
+            if (String(mappedData[1]) == String($("#performa").val())) {
+                data = data.concat([mappedData])
+             }
 
-      if (String(mappedData[1]) == String($("#performa").val())) {
-
-        data = data.concat([mappedData])
+      }
+      else {
+         if (String(mappedData[0]) == String($("#performa").val())) {
+            data = data.concat([mappedData])
+      }
       }
     })
-    // console.log("dataRecieved", data)
+    console.log("dataRecieved", data)
 
     // globalDataArray = [data[data.length-1][1], data[data.length-1][9], data[data.length-1][0], data[data.length-1][3], +data[data.length-1][3] - +data[data.length-1][4],  data[data.length-1][4]];
 
