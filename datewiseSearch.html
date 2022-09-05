@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <title>Datewise Search</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+    <style>
+      .navbar-brand {
+        margin: auto 100px;
+      }
+      .prod-details-table {
+        font-size: 10px;
+      }
+      .total-row {
+        border-top: 1px solid;
+      }
+      .vl {
+        border-right: 1px solid;
+        height: 500px;
+      }
+      /* body{
+        //padding-top:4.2rem;
+        //padding-bottom:4.2rem;
+      } */
+      .form-title {            
+        background: #073763;
+        color: #fff;
+        align-items: center;
+        justify-content: center;
+      }
+      .select-date {
+        background: #073763;
+        color: #fff;
+        padding-left: 20px;
+      }
+      .select-date label {
+        padding-right: 10px;
+      }
+      a{
+        text-decoration:none !important;
+      }
+      .table td, .table th {
+          /*padding: 0.5rem !important;*/
+          vertical-align: top;
+          border-top: none !important;
+      }
+      .prod-details-table thead th {
+        border-bottom:none;
+      }
+      .h-custom {
+        background: #073763;
+      }
+      .brown-btn {
+          background-color: #783F04;
+          color: #fff;
+          font-weight: 600;
+      }
+      .brown-btn:active {
+          background-color: #783F04 !important;
+          color: #fff;
+
+      }
+      .brown-btn:focus {
+          background-color: #783F04 !important;
+          color: #fff;
+      }
+      .brown-btn:visited {
+          background-color: #783F04 !important;
+          color: #fff;
+      }
+      @media (min-width: 1025px) {
+        .h-custom {
+          height: 120vh !important;
+        }
+        }
+        .card-registration .select-input.form-control[readonly]:not([disabled]) {
+        font-size: 1rem;
+        line-height: 2.15;
+        padding-left: .75em;
+        padding-right: .75em;
+        }
+        .card-registration .select-arrow {
+        top: 13px;
+        }
+
+        .gradient-custom-2 {
+        /* fallback for old browsers */
+        background: #a1c4fd;
+
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(161, 196, 253, 1), rgba(194, 233, 251, 1));
+
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(161, 196, 253, 1), rgba(194, 233, 251, 1))
+        }
+
+        .bg-indigo {
+        background-color: #4835d4;
+        }
+        @media (min-width: 992px) {
+        .card-registration-2 .bg-indigo {
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        }
+        }
+        @media (max-width: 991px) {
+        .card-registration-2 .bg-indigo {
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        }
+        }
+
+        /* Absolute Center Spinner */
+.loading {
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/* Transparent Overlay */
+.loading:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+    background: radial-gradient(rgba(20, 20, 20,.8), rgba(0, 0, 0, .8));
+
+  background: -webkit-radial-gradient(rgba(20, 20, 20,.8), rgba(0, 0, 0,.8));
+}
+
+/* :not(:required) hides these rules from IE9 and below */
+.loading:not(:required) {
+  /* hide "loading..." text */
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.loading:not(:required):after {
+  content: '';
+  display: block;
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  -webkit-animation: spinner 150ms infinite linear;
+  -moz-animation: spinner 150ms infinite linear;
+  -ms-animation: spinner 150ms infinite linear;
+  -o-animation: spinner 150ms infinite linear;
+  animation: spinner 150ms infinite linear;
+  border-radius: 0.5em;
+  -webkit-box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1.1em 0 0, rgba(255,255,255, 0.75) 0 1.5em 0 0, rgba(255,255,255, 0.75) -1.1em 1.1em 0 0, rgba(255,255,255, 0.75) -1.5em 0 0 0, rgba(255,255,255, 0.75) -1.1em -1.1em 0 0, rgba(255,255,255, 0.75) 0 -1.5em 0 0, rgba(255,255,255, 0.75) 1.1em -1.1em 0 0;
+box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1.1em 0 0, rgba(255,255,255, 0.75) 0 1.5em 0 0, rgba(255,255,255, 0.75) -1.1em 1.1em 0 0, rgba(255,255,255, 0.75) -1.5em 0 0 0, rgba(255,255,255, 0.75) -1.1em -1.1em 0 0, rgba(255,255,255, 0.75) 0 -1.5em 0 0, rgba(255,255,255, 0.75) 1.1em -1.1em 0 0;
+}
+
+/* Animation */
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+marquee {
+      background-color: green;
+      display: flex;
+      align-items: center;
+      height: 60px;
+      color: #fff;
+    }
+    </style>
+  </head>
+  <body>
+    <?var url = getPageUrl();?>
+    <marquee behavior="scroll" direction="left">Kairali ayurvedic centre</marquee>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="w-100">
+        <a class="navbar-brand" href='<?=url?>?page=DSSR_FORM' target="_blank">DSSR FORM</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href='<?=url?>?page=DatewiseSearch' target="_blank">DATEWISE SEARCH</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+         <a class="navbar-brand" href='<?=url?>?page=TreatmentAmount' target="_blank">TREATMENT AMOUNT</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+    <section class="h-100 h-custom">
+      <div class="loading" style="display:none;">Loading&#8230;</div>
+
+      <div class="container-fluid">
+        <div class="row d-flex justify-content-center align-items-center">
+          <div class="col-12">
+            <div class="card card-registration card-registration-2" style="border:none;">
+                <div class="card-body p-0">
+                  <div class="row g-0 form-title pt-2"><h2>Datewise Search - Form Kairali Ayurvedic Centre</h2></div>
+                  <div class="row g-0 select-date">
+                      <label>Select Date</label>
+                      <input class="pl-2" type='date' id='datefilter' name='datefilter' onchange="onDateChange()">
+                  </div>
+                  <div class="row g-0" style="min-height:500px;">
+                    <div class="col-lg-4 text-white" style="background-color: #073763;">
+                      <div>
+                        <h5 class="fw-normal mb-3 pt-4 pl-2 text-center">Service</h5>
+                          <table class="table table-sm prod-details-table service-record">
+                              <thead style="background-color: #660000">
+                                  <tr>
+                                      <th>Invoice No.</th>
+                                      <th>Name</th>
+                                      <th>Date</th>
+                                      <th>Method</th>
+                                      <th>Bill</th>
+                                      <th>Mobile</th>
+                                      <th>Invoice</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                               
+                              </tbody>
+                          </table>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 text-white" style="background-color: #073763;">
+                      <div>
+                        <h5 class="fw-normal mb-3 pt-4 pl-2 text-center">Product</h3>
+                          <table class="table table-sm prod-details-table product-record">
+                              <thead style="background-color: #660000">
+                                  <tr>
+                                      <th>Invoice No.</th>
+                                      <th>Name</th>
+                                      <th>Date</th>
+                                      <th>Method</th>
+                                      <th>Bill</th>
+                                      <th>Mobile</th>
+                                      <th>Invoice</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                               
+                              </tbody>
+                          </table>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 text-white" style="background-color: #073763;">
+                      <div>
+                        <h5 class="fw-normal mb-3 pt-4 pl-2 text-center">Treatment</h3>
+                          <table class="table table-sm prod-details-table treatment-record">
+                              <thead style="background-color: #660000">
+                                  <tr>
+                                      <th>Invoice No.</th>
+                                      <th>Name</th>
+                                      <th>Date</th>
+                                      <th>Method</th>
+                                      <th>Bill</th>
+                                      <th>Mobile</th>
+                                      <th>Invoice</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                               
+                              </tbody>
+                          </table>
+                      </div>
+                    </div>
+                    </div>
+
+                    <div class="row g-0">
+                    <div class="col-lg-4 text-white" style="background-color: #073763;">
+                      <div>
+                          <table class="table table-sm prod-details-table">
+                              <thead style="background-color: #660000">
+                                  <tr>
+                                      <th>Types</th>
+                                      <th>Sales Amount</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                    <td>Service</td>
+                                    <td><span class="service-sale"></span></td>
+                                  </tr>
+                                  <tr>
+                                    <td>Product</td>
+                                    <td><span class="prod-sale"></span></td>
+                                  </tr>
+                                  <tr>
+                                    <td>Treatment</td>
+                                    <td><span class="treatment-sale"></span></td>
+                                  </tr>
+                                  <tr class='total-row'>
+                                    <td style='font-weight:600;'>TOTAL TODAY SALES</td>
+                                    <td style='text-align:left;font-weight:600;'><span class="total-sale"></span></td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 text-white" style="background-color: #073763;">
+                      <div>
+                          <table class="table table-sm prod-details-table mode-record">
+                              <thead style="background-color: #660000">
+                                  <tr>
+                                      <th>Mode.</th>
+                                      <th>Service</th>
+                                      <th>Product</th>
+                                      <th>Treatment</th>
+                                      <th>Total</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                               
+                              </tbody>
+                          </table>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 text-white" style="background-color: #073763;">
+                      <div>
+                          <table class="table table-sm prod-details-table petty-record">
+                              <thead style="background-color: #660000">
+                                  <tr>
+                                      <th>Type</th>
+                                      <th>Item</th>
+                                      <th>Expense Amount</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                               
+                              </tbody>
+                          </table>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </body>
+  <script>
+    $(document).ready(function() {
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      var yyyy = today.getFullYear();
+
+      //srchFormat = dd + '/' + mm + '/' + yyyy;
+      srchFormat = yyyy + '/' + mm + '/' + dd;
+      today = yyyy + '-' + mm + '-' + dd;
+      $("#datefilter").val(today);
+      $(".loading").show();
+      google.script.run
+        .withSuccessHandler(setTableData)
+        .searchByDate(srchFormat)
+
+      google.script.run
+        .withSuccessHandler(setPettyCashData)
+        .searchPettyCashByDate(srchFormat)
+    });
+
+    function setTableData(allorders) {
+      //console.log("data >>>", allorders)
+      var prod = [];
+      var service = [];
+      var treatment = [];
+      var prodhtml = "";
+      var servicehtml = "";
+      var treatmenthtml = "";
+      var prodTotal = 0;
+      var serviceTotal = 0;
+      var treatmentTotal = 0;
+      var pSales = 0;
+      var tSales = 0;
+      var sSales = 0;
+      var modeData = [];
+      if (allorders.length > 0 ) {
+        allorders.forEach(data => {
+          var tableData = {
+            "id": data[0],
+            "name": data[4],
+            "date": data[1],
+            "method": data[43],
+            "amount": data[42],
+            "phone": data[6]
+          }
+          if (data[2] == "Product") {
+            pSales = parseFloat(data[42]) + pSales;
+            prod.push(tableData);
+          } else if (data[2] == "Service") {
+            sSales = parseFloat(data[42]) + sSales;
+            service.push(tableData);
+          } else if (data[2] == "Treatment") {
+            tSales = parseFloat(data[42]) + tSales;
+            treatment.push(tableData);
+          }
+          console.log("modeData >> ", modeData);
+          var uniqueK = data[2] + "-" + data[43]; // check payment mode 1
+          uniqueK.replace(/\s/g, '-'); //replace empty space with -
+          if (typeof modeData[uniqueK] == "undefined") {
+            modeData[uniqueK] = 0;
+          }
+
+          if (parseFloat(data[44]) > 0)
+          modeData[uniqueK] = (modeData[uniqueK] + parseFloat(data[44])); // add amount if more than 1 in cash/Payu etc. in payment mode 1
+          var uniqueK = data[2] + "-" + data[45]; // check payment mode 2
+          uniqueK.replace(/\s/g, '-'); //replace empty space with -
+
+          if (typeof modeData[uniqueK] == "undefined") {
+            modeData[uniqueK] = 0;
+          }
+          if (parseFloat(data[46]) > 0)
+          modeData[uniqueK] = (modeData[uniqueK] + parseFloat(data[46])); // add amount if more than 1 in cash/Payu etc. in payment mode 2
+          
+        });
+
+        var totalSales = sSales + tSales + pSales;
+        $(".prod-sale").text(pSales);
+        $(".service-sale").text(sSales);
+        $(".treatment-sale").text(tSales);
+        $(".total-sale").text(totalSales);
+        prod.forEach(prodData => {
+          prodhtml += getHtml(prodData);
+          prodTotal = (prodTotal + parseFloat(prodData['amount']));
+        })
+
+        service.forEach(serviceData => {
+          servicehtml += getHtml(serviceData);
+          serviceTotal = (parseFloat(serviceTotal) + parseFloat(serviceData['amount']));
+        })
+
+        treatment.forEach(treatmentData => {
+          treatmenthtml += getHtml(treatmentData);
+          treatmentTotal = (parseFloat(treatmentTotal) + parseFloat(treatmentData['amount']));
+        })
+      }
+      if (prod.length == 0) {
+        prodhtml += "<tr><td colspan='7' style='font-weight:600;text-align:center;'>No record found.</td></tr>";
+      } else {
+        prodhtml += "<tr class='total-row'><td colspan='4' style='font-weight:600;'>TOTAL</td><td colspan='3' style='text-align:left;font-weight:600;'>"+prodTotal+"</td></tr>";
+      }
+
+      if (service.length == 0) {
+        servicehtml += "<tr><td colspan='7' style='font-weight:600;text-align:center;'>No record found.</td></tr>";
+      } else {
+        servicehtml += "<tr class='total-row'><td colspan='4' style='font-weight:600;'>TOTAL</td><td colspan='3' style='text-align:left;font-weight:600;'>"+serviceTotal+"</td></tr>";
+      }
+
+      if (treatment.length == 0) {
+        treatmenthtml += "<tr><td colspan='7' style='font-weight:600;text-align:center;'>No record found.</td></tr>";
+      } else {
+        treatmenthtml += "<tr class='total-row'><td colspan='4' style='font-weight:600;'>TOTAL</td><td colspan='3' style='text-align:left;font-weight:600;'>"+treatmentTotal+"</td></tr>";
+      }
+       
+      $(".service-record > tbody").html(servicehtml);
+      $(".product-record > tbody").html(prodhtml);
+      $(".treatment-record > tbody").html(treatmenthtml);
+
+      /* Modes data */
+      var allModes = ["Cash", "Card", "Paytm", "Cheque", "Bank - NEFT", "Quick - Wallet", "Payu", "Pine Labs UPI"];
+      var modesHtml = "";
+      var allModeTotal = 0;
+      var pModTotal = 0;
+      var sModTotal = 0;
+      var tModTotal = 0;
+      allModes.forEach (mode => {
+       
+        var uniqueK = "Product-" + mode;
+        uniqueK.replace(/\s/g, '-'); //replace empty space with -
+        const pMode = (typeof modeData[uniqueK] != "undefined") ? modeData[uniqueK] : 0;
+        pModTotal = pModTotal + parseFloat(pMode);
+
+        var uniqueK = "Service-" + mode;
+        uniqueK.replace(/\s/g, '-'); //replace empty space with -
+        const sMode = (typeof modeData[uniqueK] != "undefined") ? modeData[uniqueK] : 0;
+        sModTotal = sModTotal + parseFloat(sMode);
+
+        var uniqueK = "Treatment-" + mode;
+        uniqueK.replace(/\s/g, '-'); //replace empty space with -
+        const tMode = (typeof modeData[uniqueK] != "undefined") ? modeData[uniqueK] : 0;
+        tModTotal = tModTotal + parseFloat(tMode);
+
+        const totalMode = (parseFloat(pMode) + parseFloat(sMode) + parseFloat(tMode));
+        allModeTotal = (totalMode + allModeTotal);
+        modesHtml += "<tr>";
+        modesHtml += "<td>"+mode+"</td>";
+        modesHtml += "<td>"+sMode+"</td>";
+        modesHtml += "<td>"+pMode+"</td>";
+        modesHtml += "<td>"+tMode+"</td>";
+        modesHtml += "<td>"+totalMode+"</td>";
+        modesHtml += "</tr>";
+      });
+
+      modesHtml += "<tr class='total-row'><td style='font-weight:600;'>TOTAL</td><td style='font-weight:600;'>"+sModTotal+"</td><td style='font-weight:600;'>"+pModTotal+"</td><td style='font-weight:600;'>"+tModTotal+"</td><td style='font-weight:600;'>"+allModeTotal+"</td></tr>";
+      $(".mode-record > tbody").html(modesHtml);
+      $(".loading").hide();
+    }
+
+    function getHtml(data) {
+      var html = "";
+      html += "<tr>";
+      html += "<td>"+data['id']+"</td>";
+      html += "<td>"+data['name']+"</td>";
+      html += "<td>"+data['date']+"</td>";
+      html += "<td>"+data['method']+"</td>";
+      html += "<td>"+data['amount']+"</td>";
+      html += "<td>"+data['phone']+"</td>";
+      html += "<td><a href='javascript:;'>Invoice</a></td>";
+      html += "</tr>";
+      return html;
+    }
+
+    function setPettyCashData(pettyData) {
+      //13, 14,15
+      var html = "";
+      var total = 0;
+      pettyData.forEach(cashData => {
+        html += "<tr>";
+        html += "<td>"+cashData[13]+"</td>";
+        html += "<td>"+cashData[14]+"</td>";
+        html += "<td>"+cashData[15]+"</td>";
+        html += "</tr>";
+        total = total + parseFloat(cashData[15].replaceAll(',', ''));
+      })
+      html += "<tr class='total-row'><td style='font-weight:600;'>TOTAL</td><td></td><td style='font-weight:600;'>"+total+"</td></tr>";
+      $(".petty-record > tbody").html(html);
+    }
+
+    function onDateChange() {
+      $(".loading").show();
+      var datefilter = document.getElementById('datefilter').value;
+      //2022-07-01
+      const year = datefilter.substring(0, 4);
+      const month = datefilter.substring(5, 7);
+      const day = datefilter.substring(8, 10);
+      var selDate1 = day + "/" + month + "/" + year;
+      var selDate = year + "/" + month + "/" + day;
+      google.script.run
+        .withSuccessHandler(setTableData)
+        .searchByDate(selDate)
+
+      google.script.run
+        .withSuccessHandler(setPettyCashData)
+        .searchPettyCashByDate(selDate1)
+    }
+  </script>
+</html>

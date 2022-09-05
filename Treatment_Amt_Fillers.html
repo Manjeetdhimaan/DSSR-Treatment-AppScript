@@ -1,0 +1,1389 @@
+<html>
+
+<head>
+  <base target="_top">
+  <title>Treatment Amount Filler</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"
+    id="bootstrap-css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link type="text/css" rel="stylesheet" href="resources/sheet.css">
+  <style type="text/css">
+    .ritz .waffle a {
+      color: inherit;
+    }
+
+    .ritz .waffle .s5 {
+      border-right: 1px DASHED #ffffff;
+      background-color: #ffffff;
+      text-align: right;
+      color: #000000;
+      font-family: 'Arial';
+      font-size: 10pt;
+      vertical-align: bottom;
+      white-space: nowrap;
+      direction: ltr;
+      padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s12 {
+      background-color: #434343;
+      text-align: left;
+      color: #ffffff;
+      font-family: 'Arial';
+      font-size: 10pt;
+      vertical-align: bottom;
+      white-space: nowrap;
+      direction: ltr;
+      padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s15 {
+      border-bottom: 1px DASHED #ffffff;
+      border-right: 1px DASHED #ffffff;
+      background-color: #0c343d;
+      text-align: left;
+      color: #000000;
+      font-family: 'Arial';
+      font-size: 10pt;
+      vertical-align: bottom;
+      white-space: nowrap;
+      direction: ltr;
+      padding: 2px 3px 2px 3px;
+    }
+
+    body {
+      background-color: #434343;
+    }
+
+    .ritz .waffle .s14 {
+      border-right: 1px DASHED #ffffff;
+      background-color: #434343;
+      text-align: left;
+      color: #ffffff;
+      font-family: 'Arial';
+      font-size: 10pt;
+      vertical-align: bottom;
+      white-space: nowrap;
+      direction: ltr;
+      padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s13 {
+      border-bottom: 1px DASHED #ffffff;
+      background-color: #434343;
+      text-align: left;
+      color: #000000;
+      font-family: 'Arial';
+      font-size: 10pt;
+      vertical-align: bottom;
+      white-space: nowrap;
+      direction: ltr;
+      padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s20 {
+      background-color: #434343;
+      text-align: left;
+      color: #434343;
+      font-family: 'Arial';
+      font-size: 10pt;
+      vertical-align: bottom;
+      white-space: nowrap;
+      direction: ltr;
+      padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s16 {
+      border-bottom: 1px DASHED #ffffff;
+      border-right: 1px DASHED #ffffff;
+      background-color: #0c343d;
+      text-align: center;
+      font-weight: bold;
+      color: #ffffff;
+      font-family: 'docs-Comfortaa', Arial;
+      font-size: 14pt;
+      vertical-align: bottom;
+      white-space: nowrap;
+      direction: ltr;
+      padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s1 {
+      background-color: #434343;
+      text-align: left;
+      color: #000000;
+      font-family: 'Arial';
+      font-size: 10pt;
+      vertical-align: bottom;
+      white-space: nowrap;
+      direction: ltr;
+      padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s4 {
+      border-bottom: 1px DASHED #ffffff;
+      border-right: 1px DASHED #ffffff;
+      background-color: #4c1130;
+      text-align: center;
+      font-weight: bold;
+      color: #ffffff;
+      font-family: 'docs-Comfortaa', Arial;
+      font-size: 10pt;
+      vertical-align: bottom;
+      white-space: nowrap;
+      direction: ltr;
+      padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s7 {
+      background-color: #434343;
+      text-align: right;
+      color: #434343;
+      font-family: 'Arial';
+      font-size: 10pt;
+      vertical-align: bottom;
+      white-space: nowrap;
+      direction: ltr;
+      padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s11 {
+      background-color: #ffffff;
+      text-align: left;
+      color: #000000;
+      font-family: 'Arial';
+      font-size: 10pt;
+      vertical-align: bottom;
+      white-space: nowrap;
+      direction: ltr;
+      padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s0 {
+      border-bottom: 3px SOLID #ffffff;
+      border-right: 3px SOLID #ffffff;
+      background-color: #0c343d;
+      text-align: center;
+      font-weight: bold;
+      color: #ffffff;
+      font-family: 'docs-Comfortaa', Arial;
+      font-size: 36pt;
+      vertical-align: bottom;
+      white-space: nowrap;
+      direction: ltr;
+      padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s8 {
+      border-bottom: 1px DASHED #ffffff;
+      border-right: 1px DASHED #ffffff;
+      background-color: #0c343d;
+      text-align: center;
+      color: #ffffff;
+      font-family: 'Arial';
+      font-size: 10pt;
+      vertical-align: middle;
+      white-space: nowrap;
+      direction: ltr;
+      padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s3 {
+      border-right: 1px DASHED #ffffff;
+      background-color: #434343;
+      text-align: left;
+      color: #000000;
+      font-family: 'Arial';
+      font-size: 10pt;
+      vertical-align: bottom;
+      white-space: nowrap;
+      direction: ltr;
+      padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s19 {
+      background-color: #00ff00;
+      text-align: left;
+      color: #000000;
+      font-family: 'Arial';
+      font-size: 11pt;
+      vertical-align: bottom;
+      white-space: nowrap;
+      direction: ltr;
+      padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s6 {
+      border-bottom: 1px DASHED #ffffff;
+      border-right: 1px DASHED #ffffff;
+      background-color: #0c343d;
+      text-align: center;
+      font-weight: bold;
+      color: #ffffff;
+      font-family: 'Arial';
+      font-size: 10pt;
+      vertical-align: middle;
+      white-space: normal;
+      overflow: hidden;
+      word-wrap: break-word;
+      direction: ltr;
+      padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s18 {
+      border-bottom: 1px DASHED #ffffff;
+      border-right: 1px DASHED #ffffff;
+      background-color: #0c343d;
+      text-align: left;
+      text-decoration: underline;
+      -webkit-text-decoration-skip: none;
+      text-decoration-skip-ink: none;
+      color: #1155cc;
+      font-family: 'Arial';
+      font-size: 10pt;
+      vertical-align: bottom;
+      white-space: nowrap;
+      direction: ltr;
+      padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s10 {
+      border-bottom: 1px DASHED #ffffff;
+      border-right: 1px DASHED #ffffff;
+      background-color: #4c1130;
+      text-align: center;
+      font-weight: bold;
+      color: #ffffff;
+      font-family: 'Arial';
+      font-size: 10pt;
+      vertical-align: middle;
+      white-space: nowrap;
+      direction: ltr;
+      padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s17 {
+      border-bottom: 1px DASHED #ffffff;
+      border-right: 1px DASHED #ffffff;
+      background-color: #0c343d;
+      text-align: center;
+      color: #ffffff;
+      font-family: 'Arial';
+      font-size: 10pt;
+      vertical-align: bottom;
+      white-space: nowrap;
+      direction: ltr;
+      padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s9 {
+      border-bottom: 1px DASHED #ffffff;
+      border-right: 1px DASHED #ffffff;
+      background-color: #4c1130;
+      text-align: center;
+      color: #ffffff;
+      font-family: 'Arial';
+      font-size: 10pt;
+      vertical-align: middle;
+      white-space: nowrap;
+      direction: ltr;
+      padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s2 {
+      border-bottom: 1px DASHED #ffffff;
+      border-right: 1px DASHED #ffffff;
+      background-color: #0c343d;
+      text-align: center;
+      font-weight: bold;
+      color: #ffffff;
+      font-family: 'docs-Comfortaa', Arial;
+      font-size: 10pt;
+      vertical-align: bottom;
+      white-space: nowrap;
+      direction: ltr;
+      padding: 2px 3px 2px 3px;
+    }
+
+    marquee {
+      background-color: green;
+      display: flex;
+      align-items: center;
+      height: 60px;
+      color: #fff;
+    }
+
+    .navbar-brand {
+      margin: auto 100px;
+    }
+
+    .form-control {
+      background: #0c343d;
+      padding: 0.125rem .75rem;
+      font-size: 0.9rem;
+    }
+
+    .form-control:focus {
+      background: #0c343d;
+      padding: 0.125rem .75rem;
+      font-size: 0.9rem;
+      color: #fff
+    }
+
+    .form-control:not(:focus) {
+      background: #0c343d;
+      padding: 0.125rem .75rem;
+      font-size: 0.9rem;
+      color: #fff
+    }
+
+
+    /* Absolute Center Spinner */
+    .loading {
+      position: fixed;
+      z-index: 999;
+      height: 2em;
+      width: 2em;
+      overflow: show;
+      margin: auto;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+    }
+
+    /* Transparent Overlay */
+    .loading:before {
+      content: '';
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(rgba(20, 20, 20, .8), rgba(0, 0, 0, .8));
+
+      background: -webkit-radial-gradient(rgba(20, 20, 20, .8), rgba(0, 0, 0, .8));
+    }
+
+    /* :not(:required) hides these rules from IE9 and below */
+    .loading:not(:required) {
+      /* hide "loading..." text */
+      font: 0/0 a;
+      color: transparent;
+      text-shadow: none;
+      background-color: transparent;
+      border: 0;
+    }
+
+    .loading:not(:required):after {
+      content: '';
+      display: block;
+      font-size: 10px;
+      width: 1em;
+      height: 1em;
+      margin-top: -0.5em;
+      -webkit-animation: spinner 150ms infinite linear;
+      -moz-animation: spinner 150ms infinite linear;
+      -ms-animation: spinner 150ms infinite linear;
+      -o-animation: spinner 150ms infinite linear;
+      animation: spinner 150ms infinite linear;
+      border-radius: 0.5em;
+      -webkit-box-shadow: rgba(255, 255, 255, 0.75) 1.5em 0 0 0, rgba(255, 255, 255, 0.75) 1.1em 1.1em 0 0, rgba(255, 255, 255, 0.75) 0 1.5em 0 0, rgba(255, 255, 255, 0.75) -1.1em 1.1em 0 0, rgba(255, 255, 255, 0.75) -1.5em 0 0 0, rgba(255, 255, 255, 0.75) -1.1em -1.1em 0 0, rgba(255, 255, 255, 0.75) 0 -1.5em 0 0, rgba(255, 255, 255, 0.75) 1.1em -1.1em 0 0;
+      box-shadow: rgba(255, 255, 255, 0.75) 1.5em 0 0 0, rgba(255, 255, 255, 0.75) 1.1em 1.1em 0 0, rgba(255, 255, 255, 0.75) 0 1.5em 0 0, rgba(255, 255, 255, 0.75) -1.1em 1.1em 0 0, rgba(255, 255, 255, 0.75) -1.5em 0 0 0, rgba(255, 255, 255, 0.75) -1.1em -1.1em 0 0, rgba(255, 255, 255, 0.75) 0 -1.5em 0 0, rgba(255, 255, 255, 0.75) 1.1em -1.1em 0 0;
+    }
+
+    /* Animation */
+
+    @-webkit-keyframes spinner {
+      0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    @-moz-keyframes spinner {
+      0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    @-o-keyframes spinner {
+      0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spinner {
+      0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    /* .s2 {
+      min-width:90px
+    } */
+  </style>
+</head>
+
+<body>
+  <?var url = getPageUrl();?>
+  <marquee behavior="scroll" direction="left">Kairali ayurvedic centre</marquee>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="w-100">
+      <a class="navbar-brand" href='<?=url?>?page=DSSR_FORM' target="_blank">DSSR FORM</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href='<?=url?>?page=DatewiseSearch' target="_blank">DATEWISE SEARCH</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href='<?=url?>?page=TreatmentAmount' target="_blank">TREATMENT AMOUNT</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+
+
+
+  <div class="loading" style="display:none;">Loading&#8230;</div>
+  <div class="ritz grid-container" dir="ltr">
+    <form id="DSSRForm">
+      <table class="waffle no-grid" cellspacing="0" cellpadding="0">
+        <thead>
+        </thead>
+        <tbody>
+          <tr style="height: 20px">
+
+            <td class="s0" colspan="12" rowspan="2">Treatment Amount Filler</td>
+            <td class="s1"></td>
+          </tr>
+          <tr style="height: 51px">
+
+            <td class="s1"></td>
+          </tr>
+          <tr style="height: 29px">
+
+            <td class="s2">Mobile No</td>
+            <td class="s2" style="min-width:100px">Name</td>
+            <td class="s1"></td>
+            <td class="s3"></td>
+            <td class="s2" style="min-width:140px">Performa No</td>
+            <td class="s2" style="max-width:90px">Performa Amount</td>
+            <td class="s2" style="max-width:90px">Received Amount</td>
+            <td class="s2">Balance Amount</td>
+            <td class="s4" style="min-width:80px">Date</td>
+            <td class="s4" style="max-width:80px">Amount Deposit</td>
+            <td class="s4" style="min-width:80px">Paid By</td>
+            <td class="s4">Amount Receiver</td>
+            <td class="s1"></td>
+          </tr>
+          <tr style="height: 38px">
+
+            <td class="s8">
+              <input type="text" id="contact_no" required class="form-control form-control-md" name="contact_no" />
+            </td>
+            <td class="s6"><input type="text" id="customer_name" required name="customer_name"
+                class="form-control form-control-md" />
+            </td>
+            <td class="s7"></td>
+            <td class="s3" dir="ltr"></td>
+            <td class="s8" dir="ltr">
+              <select name="performa" id="performa" class="form-control">
+
+              </select>
+
+            </td>
+            <td class="s8">
+
+              <input type="number" id="performaAmount" required name="performaAmount"
+                class="form-control form-control-md" />
+            </td>
+            <td class="s8"><input type="number" id="totalAmount" required name="totalAmount"
+                class="form-control form-control-md" />
+            </td>
+            <td class="s8"><input type="number" id="balanceAmount" required name="balanceAmount"
+                class="form-control form-control-md" />
+            </td>
+            <td class="s9"><input type="text" id="date" required name="date" class="form-control form-control-md" />
+            </td>
+            <td class="s8" dir="ltr"><input type="number" id="amountDeposit" required name="amountDeposit"
+                class="form-control form-control-md" />
+            </td>
+            <td class="s10" dir="ltr">
+              <select name="paymentMode" id="paymentMode" class="form-control">
+                <option value="Paytm">Paytm</option>
+                <option value="Card">Card</option>
+                <option value="NEFT">NEFT</option>
+                <option value="Pyu">Pyu</option>
+                <option value="Cash">Cash</option>
+              </select>
+            </td>
+            <td class="s8" dir="ltr">
+              <select name="amountReciever" id="amountReciever" class="form-control">
+                <option value="TEST1">TEST 1</option>
+                <option value="TEST2">TEST 3</option>
+                <option value="TEST3">TEST 3</option>
+                <option value="TEST4">TEST 4</option>
+              </select>
+            </td>
+            <td class="s1"></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="float: right; margin-right:15px; margin-top:1.2rem">
+        <button type="submit" class="btn btn-success btn-md" data-mdb-ripple-color="dark">Submit</button>
+      </div>
+
+    </form>
+    <div id="dataTable" class="waffle no-grid" style="display: inline-block;
+  vertical-align: text-top; margin-left:2rem">
+      <table class="waffle no-grid" cellspacing="0" cellpadding="0" style="margin-top: 5rem;">
+        <tbody>
+          <tr style="height: 20px;">
+
+            <td class="s2">invoice no</td>
+            <td class="s2" style="min-width:80px">Name</td>
+            <td class="s2" style="min-width:80px">Date</td>
+            <td class="s2">Performa Amount</td>
+            <td class="s2">Invoice</td>
+            <td class="s2">Invoice Status</td>
+          </tr>
+
+        </tbody>
+      </table>
+      <!-- The Data Table is inserted here by JavaScript -->
+    </div>
+
+    <div id="dataTable2" class="waffle no-grid" style="display: inline-block;
+  vertical-align: text-top; margin-left:16rem">
+      <table class="waffle no-grid" cellspacing="0" cellpadding="0" style="margin-top: 5rem;">
+        <tbody>
+          <tr style="height: 20px;">
+
+            <td class="s2" style="min-width:100px">Date</td>
+            <td class="s2" >Amount Cr</td>
+            <td class="s2">Balance Amount</td>
+            <td class="s2" >Paid By</td>
+            <td class="s2" style='min-width:105px'>Receipts No</td>
+            <td class="s1"></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <div id='embed_1194244850' class='waffle-embedded-object-overlay'
+      style='width: 144px; height: 38px; display: block;'>
+
+      <div style="float: right; margin-right:-65rem; margin-top:1.2rem">
+        <select name="status" id="status" class="form-control" style=" margin-top:1.2rem">
+          <option value="Refund">Refund</option>
+          <option value="Carry_Fwd">Carry_Fwd</option>
+        </select>
+
+        <select name="piStatus" id="piStatus" class="form-control" style=" margin-top:1.2rem; display:inline-block;">
+          <option value="Cancelled_PI">Cancelled_PI</option>
+          <option value="Closed_PI">Closed_PI</option>
+        </select>
+
+      </div>
+      <button type="button" onclick="handleSubmitForm()" class="btn btn-success btn-md" data-mdb-ripple-color="dark"
+        style="float: right; margin-right:-72rem; margin-top:6rem">Submit</button>
+
+      <!-- The Modal -->
+      <div class="modal" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">SUCCESS</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+              Record Saved Successfully.
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger close-modal" data-dismiss="modal">Close</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <script type="text/javascript" nonce="qQIkGoNIYbd7_dntx-xWig">
+        function posObj(sheet, id, row, col, x, y) {
+          var rtl = false;
+          var sheetElement = document.getElementById(sheet);
+          if (!sheetElement) {
+            sheetElement = document.getElementById(sheet + '-grid-container');
+          }
+          if (sheetElement) {
+            rtl = sheetElement.getAttribute('dir') == 'rtl';
+          }
+          var r = document.getElementById(sheet + 'R' + row);
+          var c = document.getElementById(sheet + 'C' + col);
+          if (r && c) {
+            var objElement = document.getElementById(id);
+            var s = objElement.style;
+            var t = y;
+            while (r && r != sheetElement) {
+              t += r.offsetTop;
+              r = r.offsetParent;
+            }
+            var offsetX = x;
+            while (c && c != sheetElement) {
+              offsetX += c.offsetLeft;
+              c = c.offsetParent;
+            }
+            if (rtl) {
+              offsetX -= objElement.offsetWidth;
+            }
+            s.left = offsetX + 'px';
+            s.top = t + 'px';
+            s.display = 'block';
+            s.border = '1px solid #000000';
+          }
+        }
+
+        function posObjs() {
+          posObj('2115038874', 'embed_1194244850', 4, 10, 90, 5); posObj('2115038874', 'embed_1188808286', 22, 10, 82, 10);
+        } posObjs();
+      </script>
+
+
+
+
+</body>
+<script>
+  // getAllTreatmentCustomers
+  var invoiceArray = [];
+  $(document).ready(function () {
+    $(".loading").show();
+    //Run first time screen load
+    // google.script.run
+    // .withSuccessHandler(getDada)
+    // .getAllTreatmentCustomers();
+
+    google.script.run
+      .withSuccessHandler(getClosePi)
+      .getClosePi();
+
+    google.script.run
+      .withSuccessHandler(getClosePi1)
+      .getClosePi1();
+
+
+    $(".close-modal").on('click', function () {
+      $("#myModal").hide();
+    });
+    //On product type change get produts list and their prices
+
+    $("#contact_no").on("blur", function () {
+      invoiceArray.length = 0;
+      invoiceArray = [];
+
+      var selectBox = document.getElementById('performa');
+      selectBox.options.length = 0;
+
+       
+      if ($(this).val() == '') {
+        return;
+      }
+      else {
+        $(".loading").show();
+        
+         google.script.run
+          .withSuccessHandler(getInvoiceDropDownValues)
+          .searchTreatmentCustomerForTable($(this).val());
+
+        setTimeout(google.script.run
+          .withSuccessHandler(searchComplete)
+          .searchTreatmentCustomer($(this).val()), 1500);
+
+        setTimeout(google.script.run
+          .withSuccessHandler(getCompleteTable)
+          .searchTreatmentCustomerForTable($(this).val()), 2500);
+
+      }
+
+    })
+
+    $("#performa").on("change", function () {
+      $(".loading").show();
+      // console.log("per", $(this).val())
+      google.script.run
+        .withSuccessHandler(searchPerforma)
+        .searchTreatmentCustomerPerforma($(this).val(), $("#contact_no").val())
+      google.script.run
+        .withSuccessHandler(createTableOfAllCustomers)
+        .searchTreatmentCustomerPerforma($(this).val(), $("#contact_no").val())
+    })
+
+    $(".loading").hide();
+
+  })
+
+  var closePIData = [];
+  var closePIData1 = [];
+
+  function getClosePi(data) {
+    closePIData = data
+  }
+
+
+  function getClosePi1(data) {
+    closePIData1 = data;
+
+    console.log("closePIInfunction", closePIData1);
+    console.log("globata", globalDataArray)
+  }
+
+
+  function setItemDropDownValues(productList) {
+    // console.log("console.log(productList)", productList)
+    $(".loading").hide();
+    var selectType = $("#ProductType").val();
+    var selectOpt = "<option value=''>Please Select " + selectType + "</option>";
+    for (var i = 0; i < productList.length; i++) {
+      if (productList[i][1] != "")
+        selectOpt += "<option value='" + productList[i][1] + "' data-mrp='" + productList[i][6] + "'>" + productList[i][1] + "</option>";
+    }
+    $(".th-header-text").text("Select " + selectType);
+    $(".product-list").html(selectOpt);
+    $(".prod-details-table").find("input").val("")
+    //console.log("productList", productList)
+  }
+
+
+  // function setPerformaDropDownValues(productList) {
+  //       $(".loading").hide();
+  //       var selectType = $("#ProductType").val();
+  //       var selectOpt = "<option value=''>Please Select "+selectType+"</option>";
+  //       console.log(productList)
+  //       for(var i=0; i<productList.length; i++) {
+  //         if (productList[i][1] != "")
+  //         selectOpt += "<option value='"+productList[i][1]+"' data-mrp='"+productList[i][6]+"'>"+productList[i][1]+"</option>";
+  //       }
+  //       $(".th-header-text").text("Select "+selectType);
+  //       $(".product-list").html(selectOpt);
+  //       $(".prod-details-table").find("input").val("")
+  //       //console.log("productList", productList)
+  //     }
+
+  var globalRecievdAMT = 0
+
+  function searchPerforma(data) {
+    $(".loading").hide();
+    var totalAMTData = [];
+    console.log("searchPerformaData", data)
+    var totalRecievedAMT = 0;
+    for (let i = 0; i < data.length; i++) {
+      totalRecievedAMT = Number(totalRecievedAMT + +data[i][7])
+      // invoiceArray = invoiceArray.concat(data[i][0])
+      totalAMTData = totalAMTData.concat([[data[i][0], data[i][2], data[i][1], data[i][6], data[i][11]]])
+    }
+    //         var selectBox = document.getElementById('performa');
+    //         for(var i = 0, l = invoiceArray.length; i < l; i++){
+    //           var option = invoiceArray[i];
+    //           selectBox.options.add(new Option(invoiceArray[i]) );
+    //         }
+    // createTable(totalAMTData);
+
+    var recievd = +data[data.length - 1][3] - data[data.length - 1][4];
+    globalRecievdAMT = +data[data.length - 1][3] - data[data.length - 1][4];
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = dd + '/' + mm + '/' + yyyy;
+    if (data) {
+      if (data[data.length - 1].length >= 9 && data[data.length - 1].length <= 12) {
+        $('input[name="customer_name"]').val(data[data.length - 1][9])
+        $('input[name="performa"]').val(data[data.length - 1][0])
+        $('input[name="performaAmount"]').val(data[data.length - 1][3])
+        $('input[name="totalAmount"]').val(recievd)
+        $('input[name="balanceAmount"]').val(data[data.length - 1][4])
+        $('input[name="date"]').val(today)
+        $('select[name="paymentMode"]').val(data[data.length - 1][7])
+        // $('input[name="amountReciever"]').val(data[data.length-1][17])
+      }
+      else {
+        $('input[name="customer_name"]').val(data[data.length - 1][2])
+        $('input[name="performa"]').val(data[data.length - 1][0])
+        $('input[name="performaAmount"]').val(data[data.length - 1][6])
+        $('input[name="totalAmount"]').val(0)
+        $('input[name="balanceAmount"]').val(data[data.length - 1][6])
+        $('input[name="date"]').val(today)
+        $('select[name="paymentMode"]').val(data[data.length - 1][8])
+      }
+    } else {
+      $("#myModal").find('.modal-title').text("ALERT");
+      $("#myModal").find('.modal-body').text("No matched record found for this phone number.");
+      $("#myModal").find(".modal-header").css({ background: '#C82333', color: '#fff' });
+      $("#myModal").show();
+    }
+  }
+  globalCompleteData = []
+
+  function getCompleteTable(data) {
+    $(".loading").hide();
+    globalCompleteData = globalCompleteData.concat([data[data.length-1]]);
+    console.log("globalCompleteData", globalCompleteData);
+
+    // console.log("getCompleteData", data);
+
+    var totalAMTData = [];
+    var totalRecievedAMT = 0;
+    for (let i = 0; i < data.length; i++) {
+      // invoiceArray = invoiceArray.concat(data[i][0])
+      totalAMTData = totalAMTData.concat([[data[i][0], data[i][2], data[i][1], data[i][6], data[i][11]]])
+    }
+
+    console.log("totalAMTData", totalAMTData);
+    totalRecievedAMT = Number(totalRecievedAMT + +data[0][7]);
+    globalRecievdAMT = Number(totalRecievedAMT + +data[0][7]);
+    var balance = +data[0][6] - totalRecievedAMT;
+    createTable(totalAMTData);
+  }
+
+  function getInvoiceDropDownValues(data) {
+    $(".loading").hide();
+    // console.log("getInvoiceDropDownValues", data)
+    for (var i = 0; i < data.length; i++) {
+      invoiceArray = invoiceArray.concat(data[i][0])
+    }
+
+    var selectBox = document.getElementById('performa');
+    selectBox.options.length = 0;
+    for (var i = 0, l = invoiceArray.length; i < l; i++) {
+      var option = invoiceArray[i];
+      selectBox.options.add(new Option(invoiceArray[i], invoiceArray[invoiceArray.length - 1].selected));
+    }
+
+
+
+
+  }
+
+
+  function searchComplete(allData) {
+    $(".loading").hide();
+    var data = [];
+    console.log("allData", allData);
+   
+    console.log("#performa", String($("#performa").val()))
+    allData.map((mappedData) => {
+      // console.log("mappedData", String(mappedData[1]))
+      
+      if (String(mappedData[1]) == String($("#performa").val())) {
+
+        data = data.concat([mappedData])
+      }
+    })
+    console.log("dataRecieved", data)
+
+    // globalDataArray = [data[data.length-1][1], data[data.length-1][9], data[data.length-1][0], data[data.length-1][3], +data[data.length-1][3] - +data[data.length-1][4],  data[data.length-1][4]];
+
+    var totalAMTData = [];
+    var totalRecievedAMT = 0;
+
+    if (data[data.length - 1].length >= 9 && data[data.length - 1].length <= 12) {
+      for (let i = 0; i < data.length; i++) {
+        // invoiceArray = invoiceArray.concat(data[i][1])
+
+        totalAMTData = totalAMTData.concat([[data[i][9], data[i][2], data[i][1], data[i][6], data[i][11]]])
+      }
+      // totalRecievedAMT = Number(totalRecievedAMT+ +data[i][6]);
+      globalRecievdAMT = Number(totalRecievedAMT + +data[0][6]);
+      var balance = +data[0][6] - totalRecievedAMT;
+
+    } else {
+      for (let i = 0; i < data.length; i++) {
+        // invoiceArray = invoiceArray.concat(data[i][0])
+
+        totalAMTData = totalAMTData.concat([[data[i][0], data[i][2], data[i][1], data[i][6], data[i][11]]])
+      }
+      totalRecievedAMT = Number(totalRecievedAMT + +data[0][7]);
+      globalRecievdAMT = Number(totalRecievedAMT + +data[0][7]);
+      var balance = +data[0][6] - totalRecievedAMT;
+    }
+    //  adding values to performa dropdown
+    // createTable(totalAMTData);
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = dd + '/' + mm + '/' + yyyy;
+    if (data) {
+
+      if (data[data.length - 1].length >= 9 && data[data.length - 1].length <= 12) {
+        totalRecievedAmount = +data[data.length - 1][3] - +data[data.length - 1][4]
+        $('input[name="customer_name"]').val(data[data.length - 1][9])
+        $('input[name="performa"]').val(data[data.length - 1][1])
+        $('input[name="performaAmount"]').val(data[0][3])
+        $('input[name="totalAmount"]').val(totalRecievedAmount)
+        $('input[name="balanceAmount"]').val(data[data.length - 1][4])
+        $('input[name="date"]').val(today)
+        $('select[name="paymentMode"]').val(data[data.length - 1][7])
+        $('input[name="amountReciever"]').val(data[data.length - 1][17])
+      }
+      else {
+        $('input[name="customer_name"]').val(data[data.length - 1][2])
+        $('input[name="performa"]').val(data[data.length - 1][0])
+        $('input[name="performaAmount"]').val(data[data.length - 1][6])
+        $('input[name="totalAmount"]').val(totalRecievedAMT)
+        $('input[name="balanceAmount"]').val(balance)
+        $('input[name="date"]').val(today)
+        $('select[name="paymentMode"]').val(data[data.length - 1][8])
+        $('input[name="amountReciever"]').val(data[data.length - 1][17])
+      }
+
+    } else {
+      $("#myModal").find('.modal-title').text("ALERT");
+      $("#myModal").find('.modal-body').text("No matched record found for this phone number.");
+      $("#myModal").find(".modal-header").css({ background: '#C82333', color: '#fff' });
+      $("#myModal").show();
+    }
+
+    setTimeout(google.script.run
+      .withSuccessHandler(searchPerforma)
+      .searchTreatmentCustomerPerforma(data[data.length - 1][1], $("#contact_no").val()), 1000);
+
+
+    setTimeout(google.script.run
+      .withSuccessHandler(createTableOfAllCustomers)
+      .searchTreatmentCustomerPerforma(data[data.length - 1][1], $("#contact_no").val()), 2000)
+  }
+
+  var globalDataArray = [];
+  var golbalBalance = 0;
+
+
+  function createTableOfAllCustomers(data) {
+    if (data) {
+      // console.log("dada", data)
+      $(".loading").hide();
+      globalDataArray = [data[data.length - 1][1], data[data.length - 1][9], data[data.length - 1][0], data[data.length - 1][3], +data[data.length - 1][3] - +data[data.length - 1][4], data[data.length - 1][4]];
+
+      var close = [];
+
+      console.log("GlobalclosePIData", closePIData)
+      closePIData.map((closePI) => {
+        close = close.concat(closePI[1])
+      })
+      // console.log("getClose", close)
+      var dataArray = [];
+      var totalRecievedAMT = 0;
+
+      for (let i = 0; i < data.length; i++) {
+        dataArray = dataArray.concat([[data[i][2], data[i][6], data[i][4], data[i][7], data[i][1]]]);
+        totalRecievedAMT = totalRecievedAMT + Number(data[i][6])
+      }
+      // console.log("dataArray", dataArray)
+
+      // console.log("globalDataArray", globalDataArray)
+      var balance = +data[0][3] - totalRecievedAMT;
+      golbalBalance = +data[0][6] - totalRecievedAMT;
+      var result = "<table class='waffle no-grid' cellspacing='0' cellpadding='0' style='margin-top: 5rem;'>" +
+        "<thead style='white-space: nowrap'>" +
+        "<tr style='height: 20px;'>" +
+        "<th scope='col' class='s2' style='min-width:100px'>Date</th>" +
+        "<th scope='col' class='s2' >Amount Cr</th>" +
+        "<th scope='col' class='s2'>Balance Amount</th>" +
+        "<th scope='col' class='s2'>Paid By</th>" +
+        "<th scope='col' class='s2' style='min-width:105px'>Receipts No</th>" +
+        "</tr>" +
+        "</thead>";
+      for (var i = 0; i < dataArray.length; i++) {
+        result += "<tr>";
+        for (var j = 0; j < dataArray[i].length; j++) {
+          if (close.includes(dataArray[i][4])) {
+            // if (dataArray[i][j] == dataArray[i][2]) {
+            //       result += "<td class='s2'>"+balance+"</td>";
+            // }
+            // else {
+            result += "<td class='s2'>" + dataArray[i][j] + "</td>";
+            // }
+          }
+
+        }
+        result += "</tr>";
+      }
+      result += "</tr>"
+      result += "</table>";
+      var div = document.getElementById('dataTable2');
+
+      div.innerHTML = result;
+      // document.getElementById("message").innerHTML = "";
+    } else {
+      var div = document.getElementById('dataTable2');
+      div.innerHTML = "Data not found!";
+    }
+  }
+
+
+
+  function createTable(dataArray) {
+       console.log("globalData", globalDataArray)
+
+       console.log("closePIDataCreateTable", closePIData1)
+    var close = []
+    closePIData1.map((closePI) => {
+      close = close.concat(closePI[0])
+    })
+
+
+
+    
+
+    console.log("closePI", close)
+    if (dataArray) {
+      var result = "<table class='waffle no-grid' cellspacing='0' cellpadding='0' style='margin-top: 5rem;'>" +
+        "<thead style='white-space: nowrap'>" +
+        "<tr style='height: 20px;'>" +
+        "<th scope='col' class='s2'>Invoice No</th>" +
+        "<th scope='col' class='s2'>Name</th>" +
+        "<th scope='col' class='s2'>Date</th>" +
+        "<th scope='col' class='s2'>Performa Amount</th>" +
+        "<th scope='col' class='s2'>Invoice</th>" +
+        "<th scope='col' class='s2'>Invoice Status</th>" +
+        "</tr>" +
+        "</thead>";
+      for (var i = 0; i < dataArray.length; i++) {
+        // invoiceArray = invoiceArray.concat(dataArray[i][0])
+        result += "<tr>";
+        for (var j = 0; j <= dataArray[i].length; j++) {
+          if (dataArray[i][j] == dataArray[i][2]) {
+            result += "<td class='s2'  style='min-width:80px'>" + (dataArray[i][j]).slice(0, 10) + "</td>";
+          }
+          else if (dataArray[i][j] == dataArray[i][4]) {
+            result += "<td class='s2'>" + "<a href=" + dataArray[i][j] + " target='_blank' style='color:#1155CC'>Invoice</a>" + "</td>";
+          }
+          else if (dataArray[i][j] == dataArray[i][5]) {
+            if (close.includes(dataArray[i][0])) {
+              result += "<td class='s2'>" + "Close" + "</td>";
+            }
+            else {
+              result += "<td class='s2'>" + "Open" + "</td>";
+            }
+
+          }
+          else {
+            result += "<td class='s2' style='min-width:80px'>" + dataArray[i][j] + "</td>";
+          }
+        }
+        result += "</tr>";
+      }
+      result += "</tr>"
+      result += "</table>";
+      var div = document.getElementById('dataTable');
+
+      div.innerHTML = result;
+      // document.getElementById("message").innerHTML = "";
+    } else {
+      var div = document.getElementById('dataTable');
+      div.innerHTML = "Data not found!";
+    }
+
+    // console.log("invoiceArray", invoiceArray)
+  }
+
+  //Set all select product dropdown values
+
+
+  //HANDLE FORM SUBMISSION
+  function handleFormSubmit(formObject) {
+    formObject.preventDefault();
+    return false;
+    // console.log("formObject >>", formObject)
+    google.script.run.withSuccessHandler(saveRecordSuccess).processForm(formObject);
+    // document.getElementById("ProductForm").reset();
+  }
+
+  // final form submit
+  function handleSubmitForm() {
+    console.log("formObject >>", globalDataArray);
+    $(".loading").show();
+    google.script.run.withSuccessHandler(saveRecordSuccess).processFinalForm(globalDataArray.concat($('#status').val(), $('#piStatus').val()));
+     console.log("globalDataArray", globalDataArray)
+
+    setTimeout(closePIData1 =   closePIData1.concat([globalDataArray]), 1000);
+
+    setTimeout(console.log("formClosePI", closePIData1), 2000);
+     
+    setTimeout(google.script.run
+      .withSuccessHandler(getCompleteTable)
+      .searchTreatmentCustomerForTable(globalDataArray[2]), 2000);
+
+   
+    // document.getElementById("ProductForm").reset();
+  }
+
+  $('#DSSRForm').submit(function (e) {
+    e.preventDefault();
+
+    var obj = $('#DSSRForm');
+    // var netAmt = parseFloat(obj.find('input[name="grand_total"]').val()) - parseFloat(obj.find('input[name="discount_amt"]').val());
+   
+    // google.script.run
+    //   .withSuccessHandler(getClosePi)
+    //   .getClosePi();
+    var remainingBalance = +obj.find('input[name="balanceAmount"]').val() - +obj.find('input[name="amountDeposit"]').val();
+    var values = [
+      obj.find('input[name="contact_no"]').val(),
+      obj.find('select[name="performa"]').val(),
+      obj.find('input[name="date"]').val(),
+      obj.find('input[name="performaAmount"]').val(),
+      remainingBalance,
+      remainingBalance,
+      obj.find('input[name="amountDeposit"]').val(),
+      $('#paymentMode').val(),
+      $('#amountReciever').val(),
+      obj.find('input[name="customer_name"]').val(),
+    ];
+
+    closePIData = closePIData.concat([[obj.find('input[name="contact_no"]').val(), obj.find('select[name="performa"]').val(), obj.find('input[name="date"]').val(), obj.find('input[name="performaAmount"]').val()]])
+
+// console.log("closePIDataSubmit >> ", closePIData);
+    // console.log("Values >> ", values);
+    $(".loading").show();
+
+       let totalAmount = +$("#totalAmount").val() + +$("#amountDeposit").val();
+
+   let balanceAmount = +$("#balanceAmount").val() - +$("#amountDeposit").val()
+
+
+    $("#totalAmount").val(totalAmount) ;
+
+    $("#balanceAmount").val(balanceAmount) ;
+
+
+    google.script.run.withSuccessHandler(saveRecordSuccess).processDSSRForm(values);
+
+     var div = document.getElementById('dataTable2');
+
+      // div.innerHTML = div.innerHTML + result;
+
+      let date = String(obj.find('input[name="date"]').val());
+      let amountCR = String(obj.find('input[name="amountDeposit"]').val())
+
+
+    var result = div.innerHTML + `<table class='waffle no-grid' style='margin-top:-3rem'  >
+      <thead style='white-space: nowrap' style='visibility:hidden; opacity:0; '>
+         <tr style='height: 20px; visibility:hidden; opacity:0'>
+         <th scope='col' class='s2' style='visibility:hidden; opacity:0'>Date</th>
+         <th scope='col' class='s2'style='visibility:hidden; opacity:0'>Amount Cr</th>
+         <th scope='col' class='s2'style='visibility:hidden; opacity:0'>Balance Amount</th>
+         <th scope='col' class='s2'style='visibility:hidden; opacity:0'>Paid By</th>
+         <th scope='col' class='s2'style='visibility:hidden; opacity:0; min-width:105px'>Receipts No</th>
+       </tr> 
+         </thead>;
+      <tr class='waffle no-grid s2'>
+      <td class='waffle no-grid s2' style='min-width:100px'> ${date} </td>
+      <td class='s2'>  ${amountCR}  </td>
+      <td class='s2'>  ${$("#balanceAmount").val()} </td>
+      <td class='s2'>  ${obj.find('select[name="paymentMode"]').val()} </td>
+      <td class='s2 style='min-width:105px'>  ${obj.find('select[name="performa"]').val()} </td>
+    </tr> <br>
+    </table>`
+
+      div.innerHTML =result;
+
+//     var result = "<table class='waffle no-grid' cellspacing='0' cellpadding='0' style='margin-top: 5rem;'>" +
+//         "<thead style='white-space: nowrap'>" +
+//         "<tr style='height: 20px;'>" +
+//         "<th scope='col' class='s2'>Date</th>" +
+//         "<th scope='col' class='s2'>Amount Cr</th>" +
+//         "<th scope='col' class='s2'>Balance Amount</th>" +
+//         "<th scope='col' class='s2'>Paid By</th>" +
+//         "<th scope='col' class='s2'>Receipts No</th>" +
+//         "</tr>" +
+//         "</thead>";
+// for (var i = 0; i < dataArray.length; i++) {
+//         result += "<tr>";
+//         for (var j = 0; j < dataArray[i].length; j++) {
+//           if (close.includes(dataArray[i][4])) {
+//             // if (dataArray[i][j] == dataArray[i][2]) {
+//             //       result += "<td class='s2'>"+balance+"</td>";
+//             // }
+//             // else {
+//             result += "<td class='s2'>" + dataArray[i][j] + "</td>";
+//             // }
+//           }
+
+//         }
+//         result += "</tr>";
+//       }
+//       result += "</tr>"
+//       result += "</table>";
+     
+      // document.getElementById("message").innerHTML = "";
+
+      
+
+
+
+//     setTimeout(google.script.run
+//       .withSuccessHandler(searchComplete)
+//       .searchTreatmentCustomer($("#contact_no").val()), 5500);
+
+      //   google.script.run
+      // .withSuccessHandler(createTableOfAllCustomers)
+      // .searchTreatmentCustomerPerforma($("#performa").val(), $("#contact_no").val());
+
+
+    // setTimeout(google.script.run
+    //   .withSuccessHandler(createTableOfAllCustomers)
+    //   .searchTreatmentCustomerPerforma($("#performa").val(), $("#contact_no").val()), 5000);
+  });
+
+
+
+
+  function saveRecordSuccess() {
+    $(".loading").hide();
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    $("#myModal").find('.modal-title').text("SUCCESS");
+    $("#myModal").find('.modal-body').text("Record Saved Successfully.");
+    $("#myModal").find(".modal-header").css({ background: 'green', color: '#fff' });
+    $("#myModal").show();
+    // $('#DSSRForm')[0].reset();
+    //alert("Record saved");
+  }
+  function generateUID(length) {
+    return Math.floor(Math.pow(10, length - 1) + Math.random() * 9 * Math.pow(10, length - 1));
+  }
+
+  $('#ProductForm').submit(function (e) {
+    e.preventDefault();
+    var obj = $('#ProductForm');
+    var netAmt = parseFloat(obj.find('input[name="grand_total"]').val()) - parseFloat(obj.find('input[name="discount_amt"]').val());
+    const timePeriod = new Date().getFullYear() + "-" + (new Date().getFullYear() + 1);
+    const suffix = obj.find('select[name="product_type"]').val().charAt(0).toUpperCase();
+    var uniqueId = "KRL" + suffix + "/" + timePeriod + "/" + generateUID(6);
+    var values = [
+      uniqueId,
+      "",
+      obj.find('select[name="product_type"]').val(),
+      obj.find('input[name="contact_no"]').val(),
+      obj.find('input[name="customer_name"]').val(),
+      obj.find('input[name="email"]').val(),
+      obj.find('input[name="whatsapp"]').val(),
+      obj.find('input[name="address"]').val(),
+      obj.find('input[name="city"]').val(),
+      obj.find('input[name="state"]').val(),
+      obj.find('input[name="pincode"]').val(),
+      obj.find('select[name="client_cat"]').val(),
+      obj.find('input[name="remark"]').val(),
+      obj.find('select[name="employee_name"]').val(),
+      obj.find('select[name="prod[0][name]"]').val(),
+      obj.find('input[name="prod[0][quantity]"]').val(),
+      obj.find('input[name="prod[0][price]"]').val(),
+      obj.find('input[name="prod[0][total]"]').val(),
+      obj.find('select[name="prod[1][name]"]').val(),
+      obj.find('input[name="prod[1][quantity]"]').val(),
+      obj.find('input[name="prod[1][price]"]').val(),
+      obj.find('input[name="prod[1][total]"]').val(),
+      obj.find('select[name="prod[2][name]"]').val(),
+      obj.find('input[name="prod[2][quantity]"]').val(),
+      obj.find('input[name="prod[2][price]"]').val(),
+      obj.find('input[name="prod[2][total]"]').val(),
+      obj.find('select[name="prod[3][name]"]').val(),
+      obj.find('input[name="prod[3][quantity]"]').val(),
+      obj.find('input[name="prod[3][price]"]').val(),
+      obj.find('input[name="prod[3][total]"]').val(),
+      obj.find('select[name="prod[4][name]"]').val(),
+      obj.find('input[name="prod[4][quantity]"]').val(),
+      obj.find('input[name="prod[4][price]"]').val(),
+      obj.find('input[name="prod[4][total]"]').val(),
+      obj.find('select[name="prod[5][name]"]').val(),
+      obj.find('input[name="prod[5][quantity]"]').val(),
+      obj.find('input[name="prod[5][price]"]').val(),
+      obj.find('input[name="prod[5][total]"]').val(),
+      obj.find('input[name="total_quantity"]').val(),
+      obj.find('input[name="grand_total"]').val(),
+      obj.find('input[name="discount_percentage"]').val(),
+      obj.find('input[name="discount_amt"]').val(),
+      netAmt,
+      obj.find('select[name="pay_method_1"]').val(),
+      obj.find('input[name="payment_1"]').val(),
+      obj.find('select[name="pay_method_2"]').val(),
+      obj.find('input[name="payment_2"]').val()
+    ];
+    //console.log("Values >> ", values);
+    $(".loading").show();
+    google.script.run.withSuccessHandler(saveRecordSuccess).processForm(values);
+
+  });
+
+
+</script>
+
+</html>

@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <title>DSSR FORM</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+    <style>
+      /* body{
+        //padding-top:4.2rem;
+        //padding-bottom:4.2rem;
+      } */
+      .navbar-brand {
+        margin: auto 100px;
+      }
+      .form-title {            
+        background: #073763;
+        color: #fff;
+        align-items: center;
+        justify-content: center;
+      }
+      a{
+        text-decoration:none !important;
+      }
+      .table td, .table th {
+          padding: 0.5rem !important;
+          vertical-align: top;
+          border-top: none !important;
+      }
+      .brown-btn {
+          background-color: #783F04;
+          color: #fff;
+          font-weight: 600;
+      }
+      .brown-btn:active {
+          background-color: #783F04 !important;
+          color: #fff;
+
+      }
+      .brown-btn:focus {
+          background-color: #783F04 !important;
+          color: #fff;
+      }
+      .brown-btn:visited {
+          background-color: #783F04 !important;
+          color: #fff;
+      }
+      @media (min-width: 1025px) {
+        .h-custom {
+          height: 120vh !important;
+        }
+        }
+        .card-registration .select-input.form-control[readonly]:not([disabled]) {
+        font-size: 1rem;
+        line-height: 2.15;
+        padding-left: .75em;
+        padding-right: .75em;
+        }
+        .card-registration .select-arrow {
+        top: 13px;
+        }
+
+        .gradient-custom-2 {
+        /* fallback for old browsers */
+        background: #a1c4fd;
+
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(161, 196, 253, 1), rgba(194, 233, 251, 1));
+
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(161, 196, 253, 1), rgba(194, 233, 251, 1))
+        }
+
+        .bg-indigo {
+        background-color: #4835d4;
+        }
+        @media (min-width: 992px) {
+        .card-registration-2 .bg-indigo {
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        }
+        }
+        @media (max-width: 991px) {
+        .card-registration-2 .bg-indigo {
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        }
+        }
+
+        /* Absolute Center Spinner */
+.loading {
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/* Transparent Overlay */
+.loading:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+    background: radial-gradient(rgba(20, 20, 20,.8), rgba(0, 0, 0, .8));
+
+  background: -webkit-radial-gradient(rgba(20, 20, 20,.8), rgba(0, 0, 0,.8));
+}
+
+/* :not(:required) hides these rules from IE9 and below */
+.loading:not(:required) {
+  /* hide "loading..." text */
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.loading:not(:required):after {
+  content: '';
+  display: block;
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  -webkit-animation: spinner 150ms infinite linear;
+  -moz-animation: spinner 150ms infinite linear;
+  -ms-animation: spinner 150ms infinite linear;
+  -o-animation: spinner 150ms infinite linear;
+  animation: spinner 150ms infinite linear;
+  border-radius: 0.5em;
+  -webkit-box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1.1em 0 0, rgba(255,255,255, 0.75) 0 1.5em 0 0, rgba(255,255,255, 0.75) -1.1em 1.1em 0 0, rgba(255,255,255, 0.75) -1.5em 0 0 0, rgba(255,255,255, 0.75) -1.1em -1.1em 0 0, rgba(255,255,255, 0.75) 0 -1.5em 0 0, rgba(255,255,255, 0.75) 1.1em -1.1em 0 0;
+box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1.1em 0 0, rgba(255,255,255, 0.75) 0 1.5em 0 0, rgba(255,255,255, 0.75) -1.1em 1.1em 0 0, rgba(255,255,255, 0.75) -1.5em 0 0 0, rgba(255,255,255, 0.75) -1.1em -1.1em 0 0, rgba(255,255,255, 0.75) 0 -1.5em 0 0, rgba(255,255,255, 0.75) 1.1em -1.1em 0 0;
+}
+
+/* Animation */
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+marquee {
+      background-color: green;
+      display: flex;
+      align-items: center;
+      height: 60px;
+      color: #fff;
+    }
+    </style>
+  </head>
+  <body>
+    <marquee behavior="scroll" direction="left">Kairali ayurvedic centre</marquee>
+    <?var url = getPageUrl();?>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="w-100">
+        <a class="navbar-brand" href='<?=url?>?page=DSSR_FORM' target="_blank">DSSR FORM</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href='<?=url?>?page=DatewiseSearch' target="_blank">DATEWISE SEARCH</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+         <a class="navbar-brand" href='<?=url?>?page=TreatmentAmount' target="_blank">TREATMENT AMOUNT</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+    <section class="h-100 h-custom">
+      <div class="loading" style="display:none;">Loading&#8230;</div>
+
+      <div class="container-fluid">
+        <div class="row d-flex justify-content-center align-items-center">
+          <div class="col-12">
+            <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+              <form id="ProductForm">
+                
+                <div class="card-body p-0">
+                  <!--<div style="background-color:#073763;padding: 10px;color:#fff;"><h2>DSSR - Form Kairali Ayurvedic Centre</h2></div>-->
+                  <div class="row g-0 form-title pt-2"><h2>DSSR - Form Kairali Ayurvedic Centre</h2></div>
+                  <div class="row g-0">
+                    <div class="col-lg-6 text-white" style="background-color: #073763;border-right: 1px #fff solid">
+                      <div class="p-4">
+                        <div class="alert alert-success" style="display:none;">
+                          <strong>Success!</strong> Record Saved Successfully.
+                        </div>
+                        <h3 class="fw-normal mb-4">Customer Information</h3>
+                        <div class="row">
+                          <div class="col-md-6 pb-2">
+                            <label class="form-label" for="ProductType">Product Type</label>
+                            <select id="ProductType" class="select form-control" name="product_type">
+                              <option value="Product">Product</option>
+                              <option value="Service">Service</option>
+                              <option value="Treatment">Treatment</option>
+                              <option value="Membership">Membership</option>
+                            </select>
+                          </div>
+                          <div class="col-md-6 pb-2">
+                            <div class="form-outline">
+                              <label class="form-label" for="contact_no">Contact Number</label>
+                              <input type="text" id="contact_no" required class="form-control form-control-md" name="contact_no"/>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-6 pb-2">
+                            <div class="form-outline">
+                              <label class="form-label" for="CustomerName">Customer Name</label>
+                              <input type="text" id="CustomerName" required name="customer_name" class="form-control form-control-md" />
+                            </div>
+                          </div>
+
+                          <div class="col-md-6 pb-2">
+                            <div class="form-outline">
+                              <label class="form-label" for="email">Email Id (If)</label>
+                              <input type="text" id="email" class="form-control form-control-md" name="email"/>
+                            </div>
+                          </div>
+                          
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-6 pb-2">
+                            <div class="form-outline">
+                              <label class="form-label" for="address">Customer Address</label>
+                              <input type="text" required id="address" class="form-control form-control-md" name="address"/>
+                            </div>
+                          </div>
+                          <div class="col-md-6 pb-2">
+
+                            <div class="form-outline">
+                              <label class="form-label" for="whatsapp">Watsup No (if)</label>
+                              <input type="text" id="whatsapp" class="form-control form-control-md" name="whatsapp" />
+                            </div>
+
+                          </div>
+                          
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-6 pb-2">
+                            <div class="form-outline">
+                              <label class="form-label" required for="city">City</label>
+                              <input type="text" id="city" class="form-control form-control-md" name="city"/>
+                            </div>
+                          </div>
+                          <div class="col-md-6 pb-2">
+                            <div class="form-outline">
+                              <label class="form-label" for="Remark">Remark</label>
+                              <input type="text" id="Remark" class="form-control form-control-md" name="remark" />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-6 pb-2">
+                            <div class="form-outline">
+                              <label class="form-label" for="state">State</label>
+                              <input type="text" id="state" required class="form-control form-control-md" name="state"/>
+                            </div>
+                          </div>
+
+                          <div class="col-md-6 pb-2">
+                            <label class="form-label" for="ClientCat">Client Cat</label>
+                            <select class="select form-control col-md-12" name="client_cat">
+                              <option value="Govt">Govt</option>
+                              <option value="Regular">Regular</option>
+                              <option value="HNI">HNI</option>
+                              <option value="VIP">VIP</option>
+                            </select>
+                          </div>
+                          
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6 pb-2">
+                            <div class="form-outline">
+                              <label class="form-label" for="PinCode">PinCode</label>
+                              <input type="text" id="PinCode" class="form-control form-control-md" name="pincode"/>
+                            </div>
+                          </div>
+                          
+                          <div class="col-md-6 pb-2">
+                            <label class="form-label" for="Employee">Employee Name</label>
+                            <select class="select form-control col-md-12" name="employee_name">
+                              <option value="Priyanka">Priyanka</option>
+                              <option value="Saba">Saba</option>
+                              <option value="Somya">Somya</option>
+                              <option value="Ajay">Ajay</option>
+                            </select>
+                          </div>
+                        </div>
+                      
+                      </div>
+                    </div>
+                    <div class="col-lg-6 text-white" style="background-color: #073763;">
+                      <div>
+                        <h3 class="fw-normal mb-3 pt-4 pl-2">Product Details</h3>
+                          <table class="table table-borderless p-2 prod-details-table">
+                              <thead>
+                                  <tr>
+                                      <th class="col-md-5"><span class="th-header-text">Select Product</span></th>
+                                      <th class="col-md-2">Quantity</th>
+                                      <th class="col-md-2">Price</th>
+                                      <th class="col-md-3">Total</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                <tr class="item">
+                                    <td>
+                                      <select class="select form-control form-control-md product-list" name="prod[0][name]" required>
+                                        <option value="">Please select product</option>
+                                      </select>
+                                    </td>
+                                    <td>
+                                      <input required type="number" id="quantity1" name="prod[0][quantity]" class="form-control form-control-md quantity" min="1"/>
+                                    </td>
+                                    <td>
+                                      <input required type="text" readonly id="price1" name="prod[0][price]" class="form-control form-control-md price" />
+                                    </td>
+                                    <td>
+                                        <input required type="text" readonly id="total1" name="prod[0][total]" class="form-control form-control-md total" />
+                                    </td>
+                                </tr>
+                                <tr class="item">
+                                    <td>
+                                      <select class="select form-control form-control-md product-list" name="prod[1][name]">
+                                        <option value="">Please Select Product</option>
+                                      </select>
+                                    </td>
+                                    <td>
+                                      <input type="number" id="quantity2" name="prod[1][quantity]" class="form-control form-control-md quantity" min="1"/>
+                                    </td>
+                                    <td>
+                                      <input type="text" readonly id="price2" name="prod[1][price]" class="form-control form-control-md price" />
+                                    </td>
+                                    <td>
+                                        <input type="text" readonly id="total2" name="prod[1][total]" class="form-control form-control-md total" />
+                                    </td>
+                                </tr>
+                                <tr class="item">
+                                    <td>
+                                      <select class="select form-control form-control-md product-list" name="prod[2][name]">
+                                        <option value="">Please Select Product</option>
+                                      </select>
+                                    </td>
+                                    <td>
+                                      <input type="number" id="quantity3" name="prod[2][quantity]" class="form-control form-control-md quantity" min="1"/>
+                                    </td>
+                                    <td>
+                                      <input type="text" readonly id="price3" name="prod[2][price]" class="form-control form-control-md price" />
+                                    </td>
+                                    <td>
+                                        <input type="text" readonly id="total3" name="prod[2][total]" class="form-control form-control-md total" />
+                                    </td>
+                                </tr>
+                                <tr class="item">
+                                    <td>
+                                      <select class="select form-control form-control-md product-list" name="prod[3][name]">
+                                        <option value="">Please Select Product</option>
+                                      </select>
+                                    </td>
+                                    <td>
+                                      <input type="number" id="quantity3" name="prod[3][quantity]" class="form-control form-control-md quantity" min="1"/>
+                                    </td>
+                                    <td>
+                                      <input type="text" readonly id="price3" name="prod[3][price]" class="form-control form-control-md price" />
+                                    </td>
+                                    <td>
+                                        <input type="text" readonly id="total3" name="prod[3][total]" class="form-control form-control-md total" />
+                                    </td>
+                                </tr>
+                                <tr class="item">
+                                    <td>
+                                      <select class="select form-control form-control-md product-list" name="prod[4][name]">
+                                        <option value="">Please Select Product</option>
+                                      </select>
+                                    </td>
+                                    <td>
+                                      <input type="number" id="quantity4" name="prod[4][quantity]" class="form-control form-control-md quantity" min="1"/>
+                                    </td>
+                                    <td>
+                                      <input type="text" readonly id="price4" name="prod[4][price]" class="form-control form-control-md price" />
+                                    </td>
+                                    <td>
+                                        <input type="text" readonly id="total4" name="prod[4][total]" class="form-control form-control-md total" />
+                                    </td>
+                                </tr>
+                                <tr class="item">
+                                    <td>
+                                      <select class="select form-control form-control-md product-list" name="prod[5][name]">
+                                        <option value="">Please Select Product</option>
+                                      </select>
+                                    </td>
+                                    <td>
+                                      <input type="number" id="quantity5" name="prod[5][quantity]" class="form-control form-control-md quantity" min="1"/>
+                                    </td>
+                                    <td>
+                                      <input type="text" readonly id="price5" name="prod[5][price]" class="form-control form-control-md price" />
+                                    </td>
+                                    <td>
+                                        <input type="text" readonly id="total5" name="prod[5][total]" class="form-control form-control-md total" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                      <button type="button" class="form-control form-control-md brown-btn">GRAND TOTAL</button>
+                                    </td>
+                                    <td>
+                                      <input type="text" name="total_quantity" id="TotalQuantity" readonly class="form-control form-control-md total-quantity" min="1"/>
+                                    </td>
+                                    <td>
+                                      &nbsp;
+                                    </td>
+                                    <td>
+                                        <input type="text" style="background: #783F04; color: #fff;" name="grand_total" readonly id="GrandTotal" class="form-control form-control-md grand-total" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                      <button type="button" class="form-control form-control-md brown-btn">DISCOUNT %</button>
+                                    </td>
+                                    <td>
+                                      <input type="text" name="discount_percentage" id="DiscountPercent" class="form-control form-control-md discount" min="1"/>
+                                    </td>
+                                    <td>
+                                      &nbsp;
+                                    </td>
+                                    <td>
+                                        <input type="text"  style="background: #FFFF00;" readonly id="DiscountAmt" class="form-control form-control-md discount-amt" name="discount_amt"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                  <td colspan="4"><hr style="background-color:#fff;"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                      <button type="button" class="form-control form-control-md brown-btn">PAYMENT METHOD 1</button>
+                                    </td>
+                                    <td colspan="2">
+                                      <select class="select form-control form-control-md pay-method-1" name="pay_method_1">
+                                          <option value="Cash">Cash</option>
+                                          <option value="Card">Card</option>
+                                          <option value="Paytm">Paytm</option>
+                                          <option value="Cheque">Cheque</option>
+                                          <option value="Bank - NEFT">Bank - NEFT</option>
+                                          <option value="Quick - Wallet">Quick - Wallet</option>
+                                          <option value="Payu">Payu</option>
+                                          <option value="Pine Labs UPI">Pine Labs UPI</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="text" style="background: #F1C232;font-weight: 600;" name="payment_1" id="Payment1" class="form-control form-control-md pay-1" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                      <button type="button" class="form-control form-control-md brown-btn">PAYMENT METHOD 2</button>
+                                    </td>
+                                    <td colspan="2">
+                                      <select class="select form-control form-control-md pay-method-2" name="pay_method_2">
+                                          <option value="Cash">Cash</option>
+                                          <option selected value="Card">Card</option>
+                                          <option value="Paytm">Paytm</option>
+                                          <option value="Cheque">Cheque</option>
+                                          <option value="Bank - NEFT">Bank - NEFT</option>
+                                          <option value="Quick - Wallet">Quick - Wallet</option>
+                                          <option value="Payu">Payu</option>
+                                          <option value="Pine Labs UPI">Pine Labs UPI</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="payment_2" style="background: #F1C232;;font-weight: 600;" id="Payment2" class="form-control form-control-md pay-2" />
+                                    </td>
+                                </tr>
+                              </tbody>
+                          </table>
+                          <div class="p-2">
+                          <button type="submit" class="btn btn-success btn-md"
+                          data-mdb-ripple-color="dark">Submit</button>
+                          <button type="reset" class="btn btn-secondary btn-md"
+                          data-mdb-ripple-color="dark">Reset</button>
+                          </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">SUCCESS</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            Record Saved Successfully.
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger close-modal" data-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    $(document).ready(function() {
+      //Run first time screen load
+      google.script.run
+      .withSuccessHandler(setItemDropDownValues)
+      .getProductList();
+
+      $(".close-modal").on('click', function() {
+        $("#myModal").hide();
+      });
+      //On product type change get produts list and their prices
+      $("#ProductType").on("change", function() {
+        $(".loading").show();
+        console.log("Selected >>", $(this).val());
+        google.script.run
+        .withSuccessHandler(setItemDropDownValues)
+        .getProductList($(this).val().toLowerCase())
+      });
+
+      //On change quantity
+      $(".quantity").on("change paste keyup", function() {
+        var selValPrice = $(this).closest('tr').find('.product-list').find("option:selected").attr("data-mrp");
+        var qty = $(this).val();
+        console.log(qty, selValPrice)
+        if (qty == "") {
+           qty = 1; //default 1
+           $(this).closest('tr').find('.quantity').val(1);
+        }
+        var total = qty * selValPrice;
+        $(this).closest('tr').find('.price').val(selValPrice)
+        $(this).closest('tr').find('.total').val(total)
+        calculateTotal()
+      });
+
+      //On select product,service or treatment from right side
+      $(".product-list").on("change", function() {
+        //console.log("Price", $(this).find("option:selected").attr("data-mrp"));
+        var selValPrice = $(this).find("option:selected").attr("data-mrp");
+        var qty = $(this).closest('tr').find('.quantity').val();
+        if (selValPrice) {
+          if (qty == "") {
+            qty = 1; //default 1
+            $(this).closest('tr').find('.quantity').val(1);
+          }
+          var total = qty * selValPrice;
+          $(this).closest('tr').find('.price').val(selValPrice)
+          $(this).closest('tr').find('.total').val(total)
+        } else {
+          $(this).closest('tr').find('.quantity').val("");
+          $(this).closest('tr').find('.price').val("")
+          $(this).closest('tr').find('.total').val("")
+        }
+        calculateTotal()
+      })
+
+      $("#contact_no").on("blur", function() {
+        console.log("Phone ", $(this).val())
+        $(".loading").show();
+        google.script.run
+        .withSuccessHandler(searchComplete)
+        .searchCustomer($(this).val())
+      })
+    })
+
+    function searchComplete(data) {
+      $(".loading").hide();
+      console.log("Searched record ", data)
+      if (data) {
+        $('input[name="customer_name"]').val(data[1])
+        $('input[name="email"]').val(data[2])
+        $('input[name="whatsapp"]').val(data[3])
+        $('input[name="address"]').val(data[4])
+        $('input[name="city"]').val(data[5])
+        $('input[name="state"]').val(data[6])
+        $('input[name="pincode"]').val(data[7])
+      } else {
+        $("#myModal").find('.modal-title').text("ALERT");
+        $("#myModal").find('.modal-body').text("No matched record found for this phone number.");
+        $("#myModal").find(".modal-header").css({background: '#C82333', color: '#fff'});
+        $("#myModal").show(); 
+      }
+    }
+    
+    function calculateTotal() {
+      var grand_total = 0;
+      var total_quantity = 0;
+      $(".item").each(function( obj ) {
+        var total = parseInt($(this).find('.total').val());
+        var qty = parseInt($(this).find('.quantity').val());
+        if (total > 0) {
+          grand_total = (grand_total + total);
+          total_quantity = (total_quantity + qty)
+        }
+        $('.grand-total').val(grand_total)
+        $('.total-quantity').val(total_quantity)
+        var discount_amt = 0;
+        var dis_per = $('.discount').val();
+        if (dis_per > 0) {
+          //calulate percentage
+          discount_amt = (grand_total * dis_per)/100;
+          discount_amt = Math.round(discount_amt,2);
+        }
+        $(".discount-amt").val(discount_amt)
+        $(".pay-1").val(grand_total - discount_amt)
+        console.log($(this).find('.total').val());
+      })
+
+    }
+
+    $(".pay-1").on("change paste keyup", function() {
+      var pay_amt_1 = $(this).val();
+      var grand_total = $('.grand-total').val();
+      var disc_amt = $(".discount-amt").val();
+      var final_amt = grand_total - disc_amt;
+      if (pay_amt_1 < final_amt) {
+        const pay_amt = (final_amt - pay_amt_1);
+        $(".pay-2").val(Math.round(pay_amt, 2))
+      } else {
+        $(".pay-2").val("");
+      }
+    })
+
+    $(".pay-2").on("change paste keyup", function() {
+      var pay_amt_2 = $(this).val();
+      var grand_total = $('.grand-total').val();
+      var disc_amt = $(".discount-amt").val();
+      var final_amt = grand_total - disc_amt;
+      if (pay_amt_2 < grand_total) {
+        const pay_amt = (final_amt - pay_amt_2);
+        console.log("pay_amt >>", pay_amt)
+        console.log("pay_amt1 >>", Math.round(pay_amt, 2))
+        $(".pay-1").val(Math.round(pay_amt, 2));
+      } else {
+        $(".pay-1").val("");
+      }
+    })
+
+    $('input.discount').on('input', function() {
+      this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');
+    });
+
+    $(".discount").on("change paste keyup", function() {
+      $(".pay-1").val("");
+      $(".pay-2").val("");
+      calculateTotal();
+    })
+    //Set all select product dropdown values
+    function setItemDropDownValues(productList) {
+      $(".loading").hide();
+      var selectType = $("#ProductType").val();
+      var selectOpt = "<option value=''>Please Select "+selectType+"</option>";
+      for(var i=0; i<productList.length; i++) {
+        if (productList[i][1] != "")
+        selectOpt += "<option value='"+productList[i][1]+"' data-mrp='"+productList[i][6]+"'>"+productList[i][1]+"</option>";
+      }
+      $(".th-header-text").text("Select "+selectType);
+      $(".product-list").html(selectOpt);
+      $(".prod-details-table").find("input").val("")
+      //console.log("productList", productList)
+    }
+
+    //HANDLE FORM SUBMISSION
+    function handleFormSubmit(formObject) {
+      formObject.preventDefault();
+      return false;
+      console.log("formObject >>", formObject)
+      google.script.run.withSuccessHandler(saveRecord).processForm(formObject);
+      document.getElementById("ProductForm").reset();
+    }
+
+    function generateUID (length) {
+      return Math.floor(Math.pow(10, length-1) + Math.random() * 9 * Math.pow(10, length-1));
+    }
+
+    $('#ProductForm').submit(function(e) {
+      e.preventDefault();
+      var obj = $('#ProductForm');
+      var netAmt = parseFloat(obj.find('input[name="grand_total"]').val()) - parseFloat(obj.find('input[name="discount_amt"]').val());
+      const timePeriod = new Date().getFullYear() + "-" + (new Date().getFullYear() + 1);
+      const suffix = obj.find('select[name="product_type"]').val().charAt(0).toUpperCase();
+      var uniqueId = "KRL"+suffix+"/" + timePeriod + "/" + generateUID(6);
+      var values = [
+           uniqueId,
+           "",
+           obj.find('select[name="product_type"]').val(),
+           obj.find('input[name="contact_no"]').val(),
+           obj.find('input[name="customer_name"]').val(),
+           obj.find('input[name="email"]').val(),
+           obj.find('input[name="whatsapp"]').val(), 
+           obj.find('input[name="address"]').val(),
+           obj.find('input[name="city"]').val(),
+           obj.find('input[name="state"]').val(),
+           obj.find('input[name="pincode"]').val(),
+           obj.find('select[name="client_cat"]').val(),
+           obj.find('input[name="remark"]').val(),
+           obj.find('select[name="employee_name"]').val(),
+           obj.find('select[name="prod[0][name]"]').val(),
+           obj.find('input[name="prod[0][quantity]"]').val(),
+           obj.find('input[name="prod[0][price]"]').val(),
+           obj.find('input[name="prod[0][total]"]').val(),
+           obj.find('select[name="prod[1][name]"]').val(),
+           obj.find('input[name="prod[1][quantity]"]').val(),
+           obj.find('input[name="prod[1][price]"]').val(),
+           obj.find('input[name="prod[1][total]"]').val(),
+           obj.find('select[name="prod[2][name]"]').val(),
+           obj.find('input[name="prod[2][quantity]"]').val(),
+           obj.find('input[name="prod[2][price]"]').val(),
+           obj.find('input[name="prod[2][total]"]').val(),
+           obj.find('select[name="prod[3][name]"]').val(),
+           obj.find('input[name="prod[3][quantity]"]').val(),
+           obj.find('input[name="prod[3][price]"]').val(),
+           obj.find('input[name="prod[3][total]"]').val(),
+           obj.find('select[name="prod[4][name]"]').val(),
+           obj.find('input[name="prod[4][quantity]"]').val(),
+           obj.find('input[name="prod[4][price]"]').val(),
+           obj.find('input[name="prod[4][total]"]').val(),
+           obj.find('select[name="prod[5][name]"]').val(),
+           obj.find('input[name="prod[5][quantity]"]').val(),
+           obj.find('input[name="prod[5][price]"]').val(),
+           obj.find('input[name="prod[5][total]"]').val(),
+           obj.find('input[name="total_quantity"]').val(),
+           obj.find('input[name="grand_total"]').val(),
+           obj.find('input[name="discount_percentage"]').val(),
+           obj.find('input[name="discount_amt"]').val(),
+           netAmt,
+           obj.find('select[name="pay_method_1"]').val(),
+           obj.find('input[name="payment_1"]').val(),
+           obj.find('select[name="pay_method_2"]').val(),
+           obj.find('input[name="payment_2"]').val()
+      ];
+      //console.log("Values >> ", values);
+      $(".loading").show();
+      google.script.run.withSuccessHandler(saveRecordSuccess).processForm(values);
+    });
+
+    function saveRecordSuccess() {
+      $(".loading").hide();
+      $("html, body").animate({ scrollTop: 0 }, "slow");
+      $("#myModal").find('.modal-title').text("SUCCESS");
+      $("#myModal").find('.modal-body').text("Record Saved Successfully.");
+      $("#myModal").find(".modal-header").css({background: 'green', color: '#fff'});
+      $("#myModal").show();
+      $('#ProductForm')[0].reset();
+      //alert("Record saved");
+    }
+
+  </script>
+</html>
