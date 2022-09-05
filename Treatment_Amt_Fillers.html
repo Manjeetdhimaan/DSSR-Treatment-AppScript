@@ -581,7 +581,7 @@
             <td class="s8" dir="ltr">
               <select name="amountReciever" id="amountReciever" class="form-control">
                 <option value="TEST1">TEST 1</option>
-                <option value="TEST2">TEST 3</option>
+                <option value="TEST2">TEST 2</option>
                 <option value="TEST3">TEST 3</option>
                 <option value="TEST4">TEST 4</option>
               </select>
@@ -621,9 +621,9 @@
           <tr style="height: 20px;">
 
             <td class="s2" style="min-width:100px">Date</td>
-            <td class="s2" >Amount Cr</td>
+            <td class="s2">Amount Cr</td>
             <td class="s2">Balance Amount</td>
-            <td class="s2" >Paid By</td>
+            <td class="s2">Paid By</td>
             <td class="s2" style='min-width:105px'>Receipts No</td>
             <td class="s1"></td>
           </tr>
@@ -748,17 +748,18 @@
 
       var selectBox = document.getElementById('performa');
       selectBox.options.length = 0;
+     
 
-       
-      if ($(this).val() == '') {
+      if (String($(this).val()).trim() == '') {
         return;
       }
       else {
         $(".loading").show();
-        
+
          google.script.run
-          .withSuccessHandler(getInvoiceDropDownValues)
-          .searchTreatmentCustomerForTable($(this).val());
+        .withSuccessHandler(getInvoiceDropDownValues)
+        .searchTreatmentCustomerForTable($(this).val());
+
 
         setTimeout(google.script.run
           .withSuccessHandler(searchComplete)
@@ -767,7 +768,6 @@
         setTimeout(google.script.run
           .withSuccessHandler(getCompleteTable)
           .searchTreatmentCustomerForTable($(this).val()), 2500);
-
       }
 
     })
@@ -780,7 +780,8 @@
         .searchTreatmentCustomerPerforma($(this).val(), $("#contact_no").val())
       google.script.run
         .withSuccessHandler(createTableOfAllCustomers)
-        .searchTreatmentCustomerPerforma($(this).val(), $("#contact_no").val())
+        .searchTreatmentCustomerPerforma($(this).val(), $("#contact_no").val());
+
     })
 
     $(".loading").hide();
@@ -797,9 +798,6 @@
 
   function getClosePi1(data) {
     closePIData1 = data;
-
-    console.log("closePIInfunction", closePIData1);
-    console.log("globata", globalDataArray)
   }
 
 
@@ -892,10 +890,10 @@
 
   function getCompleteTable(data) {
     $(".loading").hide();
-    globalCompleteData = globalCompleteData.concat([data[data.length-1]]);
+    globalCompleteData = globalCompleteData.concat([data[data.length - 1]]);
     console.log("globalCompleteData", globalCompleteData);
 
-    // console.log("getCompleteData", data);
+    console.log("getCompleteData", data);
 
     var totalAMTData = [];
     var totalRecievedAMT = 0;
@@ -934,18 +932,18 @@
   function searchComplete(allData) {
     $(".loading").hide();
     var data = [];
-    console.log("allData", allData);
-   
+    // console.log("allData", allData;
+
     console.log("#performa", String($("#performa").val()))
     allData.map((mappedData) => {
       // console.log("mappedData", String(mappedData[1]))
-      
+
       if (String(mappedData[1]) == String($("#performa").val())) {
 
         data = data.concat([mappedData])
       }
     })
-    console.log("dataRecieved", data)
+    // console.log("dataRecieved", data)
 
     // globalDataArray = [data[data.length-1][1], data[data.length-1][9], data[data.length-1][0], data[data.length-1][3], +data[data.length-1][3] - +data[data.length-1][4],  data[data.length-1][4]];
 
@@ -1091,9 +1089,9 @@
 
 
   function createTable(dataArray) {
-       console.log("globalData", globalDataArray)
+    console.log("globalData", globalDataArray)
 
-       console.log("closePIDataCreateTable", closePIData1)
+    console.log("closePIDataCreateTable", closePIData1)
     var close = []
     closePIData1.map((closePI) => {
       close = close.concat(closePI[0])
@@ -1101,7 +1099,7 @@
 
 
 
-    
+
 
     console.log("closePI", close)
     if (dataArray) {
@@ -1172,17 +1170,17 @@
     console.log("formObject >>", globalDataArray);
     $(".loading").show();
     google.script.run.withSuccessHandler(saveRecordSuccess).processFinalForm(globalDataArray.concat($('#status').val(), $('#piStatus').val()));
-     console.log("globalDataArray", globalDataArray)
+    console.log("globalDataArray", globalDataArray)
 
-    setTimeout(closePIData1 =   closePIData1.concat([globalDataArray]), 1000);
+    setTimeout(closePIData1 = closePIData1.concat([globalDataArray]), 1000);
 
-    setTimeout(console.log("formClosePI", closePIData1), 2000);
-     
+    // setTimeout(console.log("formClosePI", closePIData1), 2000);
+
     setTimeout(google.script.run
       .withSuccessHandler(getCompleteTable)
       .searchTreatmentCustomerForTable(globalDataArray[2]), 2000);
 
-   
+
     // document.getElementById("ProductForm").reset();
   }
 
@@ -1191,7 +1189,7 @@
 
     var obj = $('#DSSRForm');
     // var netAmt = parseFloat(obj.find('input[name="grand_total"]').val()) - parseFloat(obj.find('input[name="discount_amt"]').val());
-   
+
     // google.script.run
     //   .withSuccessHandler(getClosePi)
     //   .getClosePi();
@@ -1211,28 +1209,28 @@
 
     closePIData = closePIData.concat([[obj.find('input[name="contact_no"]').val(), obj.find('select[name="performa"]').val(), obj.find('input[name="date"]').val(), obj.find('input[name="performaAmount"]').val()]])
 
-// console.log("closePIDataSubmit >> ", closePIData);
+    // console.log("closePIDataSubmit >> ", closePIData);
     // console.log("Values >> ", values);
     $(".loading").show();
 
-       let totalAmount = +$("#totalAmount").val() + +$("#amountDeposit").val();
+    let totalAmount = +$("#totalAmount").val() + +$("#amountDeposit").val();
 
-   let balanceAmount = +$("#balanceAmount").val() - +$("#amountDeposit").val()
+    let balanceAmount = +$("#balanceAmount").val() - +$("#amountDeposit").val()
 
 
-    $("#totalAmount").val(totalAmount) ;
+    $("#totalAmount").val(totalAmount);
 
-    $("#balanceAmount").val(balanceAmount) ;
+    $("#balanceAmount").val(balanceAmount);
 
 
     google.script.run.withSuccessHandler(saveRecordSuccess).processDSSRForm(values);
 
-     var div = document.getElementById('dataTable2');
+    var div = document.getElementById('dataTable2');
 
-      // div.innerHTML = div.innerHTML + result;
+    // div.innerHTML = div.innerHTML + result;
 
-      let date = String(obj.find('input[name="date"]').val());
-      let amountCR = String(obj.find('input[name="amountDeposit"]').val())
+    let date = String(obj.find('input[name="date"]').val());
+    let amountCR = String(obj.find('input[name="amountDeposit"]').val())
 
 
     var result = div.innerHTML + `<table class='waffle no-grid' style='margin-top:-3rem'  >
@@ -1254,54 +1252,17 @@
     </tr> <br>
     </table>`
 
-      div.innerHTML =result;
+    div.innerHTML = result;
 
-//     var result = "<table class='waffle no-grid' cellspacing='0' cellpadding='0' style='margin-top: 5rem;'>" +
-//         "<thead style='white-space: nowrap'>" +
-//         "<tr style='height: 20px;'>" +
-//         "<th scope='col' class='s2'>Date</th>" +
-//         "<th scope='col' class='s2'>Amount Cr</th>" +
-//         "<th scope='col' class='s2'>Balance Amount</th>" +
-//         "<th scope='col' class='s2'>Paid By</th>" +
-//         "<th scope='col' class='s2'>Receipts No</th>" +
-//         "</tr>" +
-//         "</thead>";
-// for (var i = 0; i < dataArray.length; i++) {
-//         result += "<tr>";
-//         for (var j = 0; j < dataArray[i].length; j++) {
-//           if (close.includes(dataArray[i][4])) {
-//             // if (dataArray[i][j] == dataArray[i][2]) {
-//             //       result += "<td class='s2'>"+balance+"</td>";
-//             // }
-//             // else {
-//             result += "<td class='s2'>" + dataArray[i][j] + "</td>";
-//             // }
-//           }
+    //     setTimeout(google.script.run
+    //       .withSuccessHandler(searchComplete)
+    //       .searchTreatmentCustomer($("#contact_no").val()), 5500);
 
-//         }
-//         result += "</tr>";
-//       }
-//       result += "</tr>"
-//       result += "</table>";
-     
-      // document.getElementById("message").innerHTML = "";
+    //   google.script.run
+    // .withSuccessHandler(createTableOfAllCustomers)
+    // .searchTreatmentCustomerPerforma($("#performa").val(), $("#contact_no").val());
 
-      
-
-
-
-//     setTimeout(google.script.run
-//       .withSuccessHandler(searchComplete)
-//       .searchTreatmentCustomer($("#contact_no").val()), 5500);
-
-      //   google.script.run
-      // .withSuccessHandler(createTableOfAllCustomers)
-      // .searchTreatmentCustomerPerforma($("#performa").val(), $("#contact_no").val());
-
-
-    // setTimeout(google.script.run
-    //   .withSuccessHandler(createTableOfAllCustomers)
-    //   .searchTreatmentCustomerPerforma($("#performa").val(), $("#contact_no").val()), 5000);
+    $("#amountDeposit").val("")
   });
 
 
