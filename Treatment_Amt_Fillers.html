@@ -745,11 +745,9 @@
     $("#contact_no").on("blur", function () {
       invoiceArray.length = 0;
       invoiceArray = [];
-
       var selectBox = document.getElementById('performa');
       selectBox.options.length = 0;
      
-
       if (String($(this).val()).trim() == '') {
         return;
       }
@@ -763,11 +761,13 @@
 
         setTimeout(google.script.run
           .withSuccessHandler(searchComplete)
-          .searchTreatmentCustomer($(this).val()), 1500);
+          .searchTreatmentCustomer($(this).val()), 2000);
 
         setTimeout(google.script.run
           .withSuccessHandler(getCompleteTable)
           .searchTreatmentCustomerForTable($(this).val()), 2500);
+
+          
       }
 
     })
@@ -836,8 +836,12 @@
 
   function searchPerforma(data) {
     $(".loading").hide();
-    var totalAMTData = [];
-    console.log("searchPerformaData", data)
+
+     if (data.length>0) { 
+
+       var totalAMTData = [];
+    // console.log("searchPerformaData", data)
+
     var totalRecievedAMT = 0;
     for (let i = 0; i < data.length; i++) {
       totalRecievedAMT = Number(totalRecievedAMT + +data[i][7])
@@ -859,7 +863,7 @@
     var yyyy = today.getFullYear();
 
     today = dd + '/' + mm + '/' + yyyy;
-    if (data) {
+    if (data || data.length>0) {
       if (data[data.length - 1].length >= 9 && data[data.length - 1].length <= 12) {
         $('input[name="customer_name"]').val(data[data.length - 1][9])
         $('input[name="performa"]').val(data[data.length - 1][0])
@@ -885,28 +889,53 @@
       $("#myModal").find(".modal-header").css({ background: '#C82333', color: '#fff' });
       $("#myModal").show();
     }
+     }
+
+      else {
+      $("#myModal").find('.modal-title').text("ALERT");
+      $("#myModal").find('.modal-body').text("No matched record found for this phone number.");
+      $("#myModal").find(".modal-header").css({ background: '#C82333', color: '#fff' });
+      $("#myModal").show();
+    }
+    
   }
   globalCompleteData = []
 
   function getCompleteTable(data) {
-    $(".loading").hide();
-    globalCompleteData = globalCompleteData.concat([data[data.length - 1]]);
-    console.log("globalCompleteData", globalCompleteData);
 
-    console.log("getCompleteData", data);
+    // console.log("newTestCompleteData >>>", data)
 
-    var totalAMTData = [];
-    var totalRecievedAMT = 0;
-    for (let i = 0; i < data.length; i++) {
-      // invoiceArray = invoiceArray.concat(data[i][0])
-      totalAMTData = totalAMTData.concat([[data[i][0], data[i][2], data[i][1], data[i][6], data[i][11]]])
+    if( data.length>0) {
+
+        globalCompleteData = globalCompleteData.concat([data[data.length - 1]]);
+        // console.log("globalCompleteData", globalCompleteData);
+
+        // console.log("getCompleteData", data);
+
+        var totalAMTData = [];
+        var totalRecievedAMT = 0;
+        for (let i = 0; i < data.length; i++) {
+          // invoiceArray = invoiceArray.concat(data[i][0])
+          totalAMTData = totalAMTData.concat([[data[i][0], data[i][2], data[i][1], data[i][6], data[i][11]]])
+        }
+
+        // console.log("totalAMTData", totalAMTData);
+
+        totalRecievedAMT = Number(totalRecievedAMT + +data[0][7]);
+        globalRecievdAMT = Number(totalRecievedAMT + +data[0][7]);
+        var balance = +data[0][6] - totalRecievedAMT;
+        createTable(totalAMTData);
+        $(".loading").hide();
     }
+    else{
+        $("#myModal").find('.modal-title').text("ALERT");
+        $("#myModal").find('.modal-body').text("No matched record found for this phone number.");
+        $("#myModal").find(".modal-header").css({ background: '#C82333', color: '#fff' });
+        $("#myModal").show();
 
-    console.log("totalAMTData", totalAMTData);
-    totalRecievedAMT = Number(totalRecievedAMT + +data[0][7]);
-    globalRecievdAMT = Number(totalRecievedAMT + +data[0][7]);
-    var balance = +data[0][6] - totalRecievedAMT;
-    createTable(totalAMTData);
+    }
+   
+    
   }
 
   function getInvoiceDropDownValues(data) {
@@ -930,26 +959,36 @@
 
 
   function searchComplete(allData) {
-    $(".loading").hide();
-    var data = [];
-    console.log("allData", allData);
 
-    console.log("#performa", String($("#performa").val()))
-    allData.map((mappedData) => {
-      // console.log("mappedData", String(mappedData[1]))
-      if (allData[allData.length - 1].length >= 9 && allData[allData.length - 1].length <= 12) {
-            if (String(mappedData[1]) == String($("#performa").val())) {
-                data = data.concat([mappedData])
-             }
+    if (allData.length>0) {
+        $(".loading").hide();
+        var data = [];
+        // console.log("allData", allData);
+        // console.log("#performa", String($("#performa").val()));
 
-      }
+        setTimeout(google.script.run
+          .withSuccessHandler(createTableOfAllCustomers)
+          .searchTreatmentCustomerPerforma($("#performa").val(), $("#contact_no").val()), 1000);
+
+          setTimeout(google.script.run
+          .withSuccessHandler(searchPerforma)
+          .searchTreatmentCustomerPerforma($("#performa").val(), $("#contact_no").val()), 1000);
+
+                allData.map((mappedData) => {
+                  // console.log("mappedData", String(mappedData[1]))
+                  if (allData[allData.length - 1].length >= 9 && allData[allData.length - 1].length <= 12) {
+                    if (String(mappedData[1]) == String($("#performa").val())) {
+                        data = data.concat([mappedData])
+                    }
+
+                  }
       else {
          if (String(mappedData[0]) == String($("#performa").val())) {
             data = data.concat([mappedData])
       }
       }
     })
-    console.log("dataRecieved", data)
+    // console.log("dataRecieved", data)
 
     // globalDataArray = [data[data.length-1][1], data[data.length-1][9], data[data.length-1][0], data[data.length-1][3], +data[data.length-1][3] - +data[data.length-1][4],  data[data.length-1][4]];
 
@@ -985,7 +1024,7 @@
     var yyyy = today.getFullYear();
 
     today = dd + '/' + mm + '/' + yyyy;
-    if (data) {
+    if (data.length>0) {
 
       if (data[data.length - 1].length >= 9 && data[data.length - 1].length <= 12) {
         totalRecievedAmount = +data[data.length - 1][3] - +data[data.length - 1][4]
@@ -1015,15 +1054,53 @@
       $("#myModal").find(".modal-header").css({ background: '#C82333', color: '#fff' });
       $("#myModal").show();
     }
+    }
+    else {
+      $("#myModal").find('.modal-title').text("ALERT");
+      $("#myModal").find('.modal-body').text("No matched record found for this phone number.");
+      $("#myModal").find(".modal-header").css({ background: '#C82333', color: '#fff' });
+      $("#myModal").show();
+      $('#DSSRForm')[0].reset();
 
-    setTimeout(google.script.run
-      .withSuccessHandler(searchPerforma)
-      .searchTreatmentCustomerPerforma(data[data.length - 1][1], $("#contact_no").val()), 1000);
+       var resultLeftTable = "<table class='waffle no-grid' cellspacing='0' cellpadding='0' style='margin-top: 5rem;'>" +
+        "<thead style='white-space: nowrap'>" +
+        "<tr style='height: 20px;'>" +
+        "<th scope='col' class='s2'>Invoice No</th>" +
+        "<th scope='col' class='s2'>Name</th>" +
+        "<th scope='col' class='s2'>Date</th>" +
+        "<th scope='col' class='s2'>Performa Amount</th>" +
+        "<th scope='col' class='s2'>Invoice</th>" +
+        "<th scope='col' class='s2'>Invoice Status</th>" +
+        "</tr>" +
+        "</thead>"+
+        "</table>";
 
 
-    setTimeout(google.script.run
-      .withSuccessHandler(createTableOfAllCustomers)
-      .searchTreatmentCustomerPerforma(data[data.length - 1][1], $("#contact_no").val()), 2000)
+      var resulRightTable = "<table class='waffle no-grid' cellspacing='0' cellpadding='0' style='margin-top: 5rem;'>" +
+        "<thead style='white-space: nowrap'>" +
+        "<tr style='height: 20px;'>" +
+        "<th scope='col' class='s2' style='min-width:100px'>Date</th>" +
+        "<th scope='col' class='s2' >Amount Cr</th>" +
+        "<th scope='col' class='s2'>Balance Amount</th>" +
+        "<th scope='col' class='s2'>Paid By</th>" +
+        "<th scope='col' class='s2' style='min-width:105px'>Receipts No</th>" +
+        "</tr>" +
+        "</thead>"+
+        "</table>";
+
+        const alert = "<alert style='background-color:#4c1130 ;color:#fff'>Data not found!</alert>"
+
+      var div = document.getElementById('dataTable');
+      div.innerHTML = resultLeftTable + alert;
+      var rightTable = document.getElementById('dataTable2');
+      rightTable.innerHTML = resulRightTable + alert;
+    }
+   
+
+    
+
+
+    
   }
 
   var globalDataArray = [];
@@ -1031,14 +1108,15 @@
 
 
   function createTableOfAllCustomers(data) {
-    if (data) {
+    if (data.length>0) {
       // console.log("dada", data)
       $(".loading").hide();
       globalDataArray = [data[data.length - 1][1], data[data.length - 1][9], data[data.length - 1][0], data[data.length - 1][3], +data[data.length - 1][3] - +data[data.length - 1][4], data[data.length - 1][4]];
 
       var close = [];
 
-      console.log("GlobalclosePIData", closePIData)
+      // console.log("GlobalclosePIData", closePIData);
+
       closePIData.map((closePI) => {
         close = close.concat(closePI[1])
       })
@@ -1095,20 +1173,13 @@
 
 
   function createTable(dataArray) {
-    console.log("globalData", globalDataArray)
-
-    console.log("closePIDataCreateTable", closePIData1)
-    var close = []
+      console.log("newtestData>> ", dataArray);
+    if (dataArray) {
+       var close = []
     closePIData1.map((closePI) => {
       close = close.concat(closePI[0])
     })
 
-
-
-
-
-    console.log("closePI", close)
-    if (dataArray) {
       var result = "<table class='waffle no-grid' cellspacing='0' cellpadding='0' style='margin-top: 5rem;'>" +
         "<thead style='white-space: nowrap'>" +
         "<tr style='height: 20px;'>" +
@@ -1156,7 +1227,6 @@
       div.innerHTML = "Data not found!";
     }
 
-    // console.log("invoiceArray", invoiceArray)
   }
 
   //Set all select product dropdown values
@@ -1173,20 +1243,21 @@
 
   // final form submit
   function handleSubmitForm() {
-    console.log("formObject >>", globalDataArray);
+    // console.log("formObject >>", globalDataArray);
     $(".loading").show();
-    google.script.run.withSuccessHandler(saveRecordSuccess).processFinalForm(globalDataArray.concat($('#status').val(), $('#piStatus').val()));
-    console.log("globalDataArray", globalDataArray)
 
-    setTimeout(closePIData1 = closePIData1.concat([globalDataArray]), 1000);
+    let closePiArray =  [$('#performa').val(), $('#customer_name').val(), $('#contact_no').val(), $('#performaAmount').val(), $('#totalAmount').val(), $('#balanceAmount').val(), $('#status').val(), $('#piStatus').val()];
+
+    google.script.run.withSuccessHandler(saveRecordSuccess).processFinalForm(closePiArray);
+    // console.log("globalDataArray", globalDataArray)
+
+    setTimeout(closePIData1 = closePIData1.concat([closePiArray]), 1000);
 
     // setTimeout(console.log("formClosePI", closePIData1), 2000);
 
     setTimeout(google.script.run
       .withSuccessHandler(getCompleteTable)
-      .searchTreatmentCustomerForTable(globalDataArray[2]), 2000);
-
-
+      .searchTreatmentCustomerForTable($('#contact_no').val()), 2000);
     // document.getElementById("ProductForm").reset();
   }
 
