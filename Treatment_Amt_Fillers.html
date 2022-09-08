@@ -765,7 +765,7 @@
 
         setTimeout(google.script.run
           .withSuccessHandler(getCompleteTable)
-          .searchTreatmentCustomerForTable($(this).val()), 2500);
+          .searchTreatmentCustomerForTable($(this).val()), 1500);
 
           
       }
@@ -1057,7 +1057,7 @@
     }
     else {
       $("#myModal").find('.modal-title').text("ALERT");
-      $("#myModal").find('.modal-body').text("No matched record found for this phone number.");
+      $("#myModal").find('.modal-body').text(`No matched record found for ${$("#contact_no").val()}.`);
       $("#myModal").find(".modal-header").css({ background: '#C82333', color: '#fff' });
       $("#myModal").show();
       $('#DSSRForm')[0].reset();
@@ -1173,7 +1173,7 @@
 
 
   function createTable(dataArray) {
-      console.log("newtestData>> ", dataArray);
+      // console.log("newtestData>> ", dataArray);
     if (dataArray) {
        var close = []
     closePIData1.map((closePI) => {
@@ -1244,9 +1244,18 @@
   // final form submit
   function handleSubmitForm() {
     // console.log("formObject >>", globalDataArray);
-    $(".loading").show();
+   
 
-    let closePiArray =  [$('#performa').val(), $('#customer_name').val(), $('#contact_no').val(), $('#performaAmount').val(), $('#totalAmount').val(), $('#balanceAmount').val(), $('#status').val(), $('#piStatus').val()];
+    if ( String($('#performa').val()).trim() =='' ||  String($('#customer_name').val()).trim() =='' ||  String($('#contact_no').val()).trim()  =='') {
+      $("#myModal").find('.modal-title').text("EMPTY FIELDS");
+      $("#myModal").find('.modal-body').text("Please Fill All required values.");
+      $("#myModal").find(".modal-header").css({ background: '#C82333', color: '#fff' });
+      $("#myModal").show();
+           return;
+    }
+    else{
+       $(".loading").show();
+       let closePiArray =  [$('#performa').val(), $('#customer_name').val(), $('#contact_no').val(), $('#performaAmount').val(), $('#totalAmount').val(), $('#balanceAmount').val(), $('#status').val(), $('#piStatus').val()];
 
     google.script.run.withSuccessHandler(saveRecordSuccess).processFinalForm(closePiArray);
     // console.log("globalDataArray", globalDataArray)
@@ -1259,6 +1268,10 @@
       .withSuccessHandler(getCompleteTable)
       .searchTreatmentCustomerForTable($('#contact_no').val()), 2000);
     // document.getElementById("ProductForm").reset();
+
+    }
+
+   
   }
 
   $('#DSSRForm').submit(function (e) {
